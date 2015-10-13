@@ -1,0 +1,2 @@
+obj\Release\GraficaSecadoras.exe
+obj\Release\GraficaSecadoras.xml

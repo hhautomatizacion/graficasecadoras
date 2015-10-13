@@ -1,0 +1,270 @@
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\ResolveAssemblyReference.cache
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Interop.ComCtl2.dll
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Interop.MSChart20Lib.dll
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Interop.MSComCtl2.dll
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\AxInterop.ComCtl2.dll
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\AxInterop.MSChart20Lib.dll
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\AxInterop.MSComCtl2.dll
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Grafica_secadoras.vbproj.ResolveComReference.cache
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.Form2.resources
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.Form1.resources
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Grafica_secadoras.vbproj.GenerateResource.Cache
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\Project1.exe
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\Project1.xml
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\ResolveAssemblyReference.cache
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Grafica_secadoras.vbproj.ResolveComReference.cache
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.Form2.resources
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.Form1.resources
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Grafica_secadoras.vbproj.GenerateResource.Cache
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.exe
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.xml
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.pdb
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.exe
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.xml
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\Project1.exe.manifest
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\Project1.application
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.exe.manifest
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.application
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.exe
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.xml
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\ResolveAssemblyReference.cache
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Grafica_secadoras.vbproj.ResolveComReference.cache
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.Form2.resources
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.Form1.resources
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Grafica_secadoras.vbproj.GenerateResource.Cache
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.exe
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.xml
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.pdb
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\Project1.exe.manifest
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\Project1.application
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\Project1.exe
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\Project1.xml
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.exe.manifest
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.application
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\Project1.pdb
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.exe.manifest
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.application
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\ResolveAssemblyReference.cache
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Grafica_secadoras.vbproj.ResolveComReference.cache
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.Form2.resources
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.Form1.resources
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Grafica_secadoras.vbproj.GenerateResource.Cache
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.exe.manifest
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.application
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\ChartFX.Lite.dll
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\ChartFX.Lite.xml
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.exe.licenses
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Release\Project1.exe.licenses
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\ChartFX.Lite.dll
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\ChartFX.Lite.xml
+G:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\obj\Debug\Project1.exe.licenses
+F:\My projects\monitor secadoras\pruebas\progenvb6\Project1.NET\bin\Project1.pdb
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Project1.exe
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Project1.xml
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Project1.pdb
+C:\Users\Usuario\Desktop\Project1.NET\bin\Project1.exe.manifest
+C:\Users\Usuario\Desktop\Project1.NET\bin\Project1.application
+C:\Users\Usuario\Desktop\Project1.NET\bin\Project1.exe
+C:\Users\Usuario\Desktop\Project1.NET\bin\Project1.pdb
+C:\Users\Usuario\Desktop\Project1.NET\bin\Project1.xml
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Grafica_secadoras.vbproj.ResolveComReference.cache
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Project1.Form2.resources
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Project1.Form1.resources
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Project1.exe.licenses
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Project1.exe.manifest
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Project1.application
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\Interop.MSChart20Lib.dll
+C:\Users\Usuario\Desktop\Project1.NET\obj\Debug\AxInterop.MSChart20Lib.dll
+C:\Users\Usuario\Desktop\Project1.NET\bin\Interop.MSChart20Lib.dll
+C:\Users\Usuario\Desktop\Project1.NET\bin\AxInterop.MSChart20Lib.dll
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Project1.exe
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Project1.xml
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Project1.pdb
+C:\Users\Usuario\Desktop\GraficaSecadoras\bin\Project1.exe.manifest
+C:\Users\Usuario\Desktop\GraficaSecadoras\bin\Project1.application
+C:\Users\Usuario\Desktop\GraficaSecadoras\bin\Project1.exe
+C:\Users\Usuario\Desktop\GraficaSecadoras\bin\Project1.pdb
+C:\Users\Usuario\Desktop\GraficaSecadoras\bin\Project1.xml
+C:\Users\Usuario\Desktop\GraficaSecadoras\bin\Interop.MSChart20Lib.dll
+C:\Users\Usuario\Desktop\GraficaSecadoras\bin\AxInterop.MSChart20Lib.dll
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Interop.MSChart20Lib.dll
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\AxInterop.MSChart20Lib.dll
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Grafica_secadoras.vbproj.ResolveComReference.cache
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Project1.Form2.resources
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Project1.Form1.resources
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Project1.exe.licenses
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Project1.exe.manifest
+C:\Users\Usuario\Desktop\GraficaSecadoras\obj\Debug\Project1.application
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\Grafica_secadoras.vbproj.ResolveComReference.cache
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\Project1.Form2.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\Project1.Form1.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\bin\GraficaSecadoras.exe.manifest
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\bin\GraficaSecadoras.application
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\bin\GraficaSecadoras.exe
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\bin\GraficaSecadoras.xml
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe.licenses
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe.manifest
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\GraficaSecadoras.application
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\GraficaSecadoras.xml
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\GraficaSecadoras.pdb
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\Project1.Form3.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\ResolveAssemblyReference.cache
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\Grafica_secadoras.vbproj.ResolveComReference.cache
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\Project1.Form2.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\Project1.Form3.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\Project1.Form1.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\GraficaSecadoras.exe.licenses
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\GraficaSecadoras.exe.manifest
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\GraficaSecadoras.application
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\GraficaSecadoras.exe
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\GraficaSecadoras.xml
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\GraficaSecadoras.exe
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\GraficaSecadoras.xml
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\GraficaSecadoras.pdb
+E:\My projects\monitor secadoras\programa\graficasecadoras\bin\GraficaSecadoras.exe.manifest
+E:\My projects\monitor secadoras\programa\graficasecadoras\bin\GraficaSecadoras.application
+E:\My projects\monitor secadoras\programa\graficasecadoras\bin\GraficaSecadoras.exe
+E:\My projects\monitor secadoras\programa\graficasecadoras\bin\GraficaSecadoras.pdb
+E:\My projects\monitor secadoras\programa\graficasecadoras\bin\GraficaSecadoras.xml
+E:\My projects\monitor secadoras\programa\graficasecadoras\bin\Interop.MSChart20Lib.dll
+E:\My projects\monitor secadoras\programa\graficasecadoras\bin\AxInterop.MSChart20Lib.dll
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\ResolveAssemblyReference.cache
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\Interop.MSChart20Lib.dll
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\AxInterop.MSChart20Lib.dll
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\Grafica_secadoras.vbproj.ResolveComReference.cache
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\Project1.Form2.resources
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\Project1.Form3.resources
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\Project1.Form1.resources
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\Grafica_secadoras.vbproj.GenerateResource.Cache
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\GraficaSecadoras.exe.licenses
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\GraficaSecadoras.exe.manifest
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\GraficaSecadoras.application
+E:\My projects\monitor secadoras\programa\graficasecadoras\obj\Debug\Project1.Form4.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\Project1.configurar.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\Project1.Resources.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\Project1.configurar.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\Project1.Resources.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\Project1.conexion.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\Project1.infoadicional.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\Project1.conexion.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\Project1.infoadicional.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Debug\Project1.busqueda.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\obj\Release\Project1.busqueda.resources
+C:\Users\MantenimientoCL\Documents\GraficaSecadoras\bin\GraficaSecadoras.pdb
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\GraficaSecadoras.xml
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\GraficaSecadoras.pdb
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\bin\GraficaSecadoras.exe.manifest
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\bin\GraficaSecadoras.application
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\bin\GraficaSecadoras.exe
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\bin\GraficaSecadoras.xml
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Project1.Form2.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Project1.Form3.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Project1.busqueda.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Project1.Form1.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Project1.infoadicional.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Project1.Resources.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe.licenses
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe.manifest
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\GraficaSecadoras.application
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\ResolveAssemblyReference.cache
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Project1.Form2.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Project1.Form3.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Project1.busqueda.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Project1.Form1.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Project1.infoadicional.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Project1.Resources.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\GraficaSecadoras.exe.licenses
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\GraficaSecadoras.exe.manifest
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\GraficaSecadoras.application
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\GraficaSecadoras.exe
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\GraficaSecadoras.xml
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Project1.Form4.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Project1.Form4.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Project1.Form5.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Project1.Form5.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Project1.AboutBox1.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Project1.AboutBox1.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Debug\Project1.Form6.resources
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\obj\Release\Project1.Form6.resources
+E:\My projects\monitor secadoras\programa\GraficaSecadoras\obj\Release\GraficaSecadoras.exe
+E:\My projects\monitor secadoras\programa\GraficaSecadoras\obj\Release\GraficaSecadoras.xml
+C:\Users\MantenimientoCL\Documents\MonitorSecadoras\GraficaSecadoras\bin\GraficaSecadoras.pdb
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.xml
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.pdb
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\bin\GraficaSecadoras.exe.manifest
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\bin\GraficaSecadoras.application
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\bin\GraficaSecadoras.exe
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\bin\GraficaSecadoras.xml
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\ResolveAssemblyReference.cache
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.AboutBox1.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form2.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form3.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.busqueda.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form4.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form5.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form6.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form1.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.infoadicional.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Resources.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe.licenses
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe.manifest
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.application
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\ResolveAssemblyReference.cache
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Project1.AboutBox1.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Project1.Form2.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Project1.Form3.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Project1.busqueda.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Project1.Form4.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Project1.Form5.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Project1.Form6.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Project1.Form1.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Project1.infoadicional.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Project1.Resources.resources
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\GraficaSecadoras.exe.licenses
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\GraficaSecadoras.exe.manifest
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\GraficaSecadoras.application
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\GraficaSecadoras.exe
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\GraficaSecadoras.xml
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\GraficaSecadoras.TrustInfo.xml
+C:\emmanuel\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.TrustInfo.xml
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\GraficaSecadoras.exe
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Release\GraficaSecadoras.xml
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\bin\GraficaSecadoras.exe.manifest
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\bin\GraficaSecadoras.application
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\bin\GraficaSecadoras.exe
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\bin\GraficaSecadoras.pdb
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\bin\GraficaSecadoras.xml
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.AboutBox1.resources
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form2.resources
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form3.resources
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.busqueda.resources
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form4.resources
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form5.resources
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form6.resources
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Form1.resources
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.infoadicional.resources
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Project1.Resources.resources
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe.licenses
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.TrustInfo.xml
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe.manifest
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.application
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.xml
+C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.pdb
