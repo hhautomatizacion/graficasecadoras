@@ -22,3 +22,5 @@
 ![005](/Fotos/005.png)
 ![006](/Fotos/006.png)
 ![007](/Fotos/007.png)
+![PequeXP000](/Fotos/PequeXP000.png)
+![PequeXP001](/Fotos/PequeXP001.png)
