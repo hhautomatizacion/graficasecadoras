@@ -18,7 +18,7 @@
     <RootNamespace>Project1</RootNamespace>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <ManifestCertificateThumbprint>368A2E90EA7EAEFECC07A2AC886485F925797183</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>46A8916E4E6C40CBB1345148CC296FF36160C272</ManifestCertificateThumbprint>
     <ManifestKeyFile>
     </ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
@@ -26,7 +26,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>SecadoraChart.ico</ApplicationIcon>
     <TargetZone>LocalIntranet</TargetZone>
-    <PublishUrl>\\mantenimientocl\MonitorSecadoras\GraficaSecadoras\</PublishUrl>
+    <PublishUrl>\\mttoserver\Descargas\GraficaSecadoras\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -38,7 +38,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Grafica de Secadoras</ProductName>
     <PublisherName>Cualquier Lavado</PublisherName>
-    <AutorunEnabled>true</AutorunEnabled>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -219,7 +220,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="control de cambios.txt" />
     <Content Include="Secadora 32bits.ico" />
     <Content Include="SecadoraChart.ico" />
   </ItemGroup>

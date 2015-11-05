@@ -11,3 +11,9 @@
 * Codigos fuente
 
 * Iconos, imagenes y archivos de configuracion de los programas
+
+### Historial
+* Version 1.0.5787.14843
+	* Se corrige error que hacia que los datos de los PLC's no se pudieran graficar.
+	* Se agrega set de temperaturas a grafica.
+	* Se corrigen errores menores.

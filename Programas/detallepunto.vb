@@ -115,16 +115,16 @@ Friend Class Form2
 
 
         If mDatos.Ventana.Name = "Form1" Then
-            If lPunto > Form1.Chart1.Series.Item(1).Points.Count - 1 Then lPunto = Form1.Chart1.Series.Item(1).Points.Count - 1
+            If lPunto > Form1.Chart1.Series.Item("Temp1").Points.Count - 1 Then lPunto = Form1.Chart1.Series.Item("Temp1").Points.Count - 1
             Text1(0).Text = lPunto
-            sSQL = "SELECT id,fecha,secadora,temp1,temp2,formula,display,entrada1,entrada2,version FROM lecturas where secadora=" & mDatos.Esclavo & " and id =" & Form1.Chart1.Series.Item(1).Points.Item(lPunto).Tag & ""
+            sSQL = "SELECT id,fecha,secadora,temp1,temp2,formula,display,entrada1,entrada2,version FROM lecturas where secadora=" & mDatos.Esclavo & " and id =" & Form1.Chart1.Series.Item("Temp1").Points.Item(lPunto).Tag & ""
             Form1.Chart1.ChartAreas(0).CursorX.SetCursorPosition(lPunto + 1)
         Else
 
             fVentana = mDatos.Ventana
-            If lPunto > fVentana.Chart1.Series.Item(1).Points.Count - 1 Then lPunto = fVentana.Chart1.Series.Item(1).Points.Count - 1
+            If lPunto > fVentana.Chart1.Series.Item("Temp1").Points.Count - 1 Then lPunto = fVentana.Chart1.Series.Item("Temp1").Points.Count - 1
             Text1(0).Text = lPunto
-            sSQL = "SELECT id,fecha,secadora,temp1,temp2,formula,display,entrada1,entrada2,version FROM lecturas where secadora=" & mDatos.Esclavo & " and id =" & fVentana.Chart1.Series.Item(1).Points.Item(lPunto).Tag & ""
+            sSQL = "SELECT id,fecha,secadora,temp1,temp2,formula,display,entrada1,entrada2,version FROM lecturas where secadora=" & mDatos.Esclavo & " and id =" & fVentana.Chart1.Series.Item("Temp1").Points.Item(lPunto).Tag & ""
 
             fVentana.Chart1.ChartAreas(0).CursorX.SetCursorPosition(lPunto + 1)
 
@@ -141,15 +141,15 @@ Friend Class Form2
         If lPunto < 0 Then lPunto = 0
 
         If mDatos.Ventana.Name = "Form1" Then
-            If lPunto > Form1.Chart1.Series.Item(1).Points.Count - 1 Then lPunto = Form1.Chart1.Series.Item(1).Points.Count - 1
+            If lPunto > Form1.Chart1.Series.Item("Temp1").Points.Count - 1 Then lPunto = Form1.Chart1.Series.Item("Temp1").Points.Count - 1
             Text1(0).Text = lPunto
-            sSQL = "SELECT id,fecha,secadora,temp1,temp2,formula,display,entrada1,entrada2,version FROM lecturas where secadora=" & mDatos.Esclavo & " and id =" & Form1.Chart1.Series.Item(1).Points.Item(lPunto).Tag & ""
+            sSQL = "SELECT id,fecha,secadora,temp1,temp2,formula,display,entrada1,entrada2,version FROM lecturas where secadora=" & mDatos.Esclavo & " and id =" & Form1.Chart1.Series.Item("Temp1").Points.Item(lPunto).Tag & ""
             Form1.Chart1.ChartAreas(0).CursorX.SetCursorPosition(lPunto + 1)
         Else
             fVentana = mDatos.Ventana
-            If lPunto > fVentana.Chart1.Series.Item(1).Points.Count - 1 Then lPunto = fVentana.Chart1.Series.Item(1).Points.Count - 1
+            If lPunto > fVentana.Chart1.Series.Item("Temp1").Points.Count - 1 Then lPunto = fVentana.Chart1.Series.Item("Temp1").Points.Count - 1
             Text1(0).Text = lPunto
-            sSQL = "SELECT id,fecha,secadora,temp1,temp2,formula,display,entrada1,entrada2,version FROM lecturas where secadora=" & mDatos.Esclavo & " and id =" & fVentana.Chart1.Series.Item(1).Points.Item(lPunto).Tag & ""
+            sSQL = "SELECT id,fecha,secadora,temp1,temp2,formula,display,entrada1,entrada2,version FROM lecturas where secadora=" & mDatos.Esclavo & " and id =" & fVentana.Chart1.Series.Item("Temp1").Points.Item(lPunto).Tag & ""
             fVentana.Chart1.ChartAreas(0).CursorX.SetCursorPosition(lPunto + 1)
         End If
         ActualizarCuadro(sSQL)

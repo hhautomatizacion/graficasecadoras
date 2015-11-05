@@ -98,46 +98,46 @@
         '
         Me.ToolStripStatusLabel10.Image = CType(resources.GetObject("ToolStripStatusLabel10.Image"), System.Drawing.Image)
         Me.ToolStripStatusLabel10.Name = "ToolStripStatusLabel10"
-        Me.ToolStripStatusLabel10.Size = New System.Drawing.Size(74, 17)
+        Me.ToolStripStatusLabel10.Size = New System.Drawing.Size(72, 17)
         Me.ToolStripStatusLabel10.Text = "Secadora:"
         '
         'ToolStripStatusLabel11
         '
         Me.ToolStripStatusLabel11.Name = "ToolStripStatusLabel11"
-        Me.ToolStripStatusLabel11.Size = New System.Drawing.Size(21, 17)
+        Me.ToolStripStatusLabel11.Size = New System.Drawing.Size(19, 17)
         Me.ToolStripStatusLabel11.Text = "XX"
         '
         'ToolStripStatusLabel4
         '
         Me.ToolStripStatusLabel4.Image = CType(resources.GetObject("ToolStripStatusLabel4.Image"), System.Drawing.Image)
         Me.ToolStripStatusLabel4.Name = "ToolStripStatusLabel4"
-        Me.ToolStripStatusLabel4.Size = New System.Drawing.Size(55, 17)
+        Me.ToolStripStatusLabel4.Size = New System.Drawing.Size(52, 17)
         Me.ToolStripStatusLabel4.Text = "Inicio:"
         '
         'ToolStripStatusLabel3
         '
         Me.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
-        Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(124, 17)
+        Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(110, 17)
         Me.ToolStripStatusLabel3.Text = "XXXX-XX-XX XX:XX:XX"
         '
         'ToolStripStatusLabel2
         '
         Me.ToolStripStatusLabel2.Image = CType(resources.GetObject("ToolStripStatusLabel2.Image"), System.Drawing.Image)
         Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(42, 17)
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(41, 17)
         Me.ToolStripStatusLabel2.Text = "Fin:"
         '
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(124, 17)
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(110, 17)
         Me.ToolStripStatusLabel1.Text = "XXXX-XX-XX XX:XX:XX"
         '
         'ToolStripStatusLabel7
         '
         Me.ToolStripStatusLabel7.Image = CType(resources.GetObject("ToolStripStatusLabel7.Image"), System.Drawing.Image)
         Me.ToolStripStatusLabel7.Name = "ToolStripStatusLabel7"
-        Me.ToolStripStatusLabel7.Size = New System.Drawing.Size(103, 17)
+        Me.ToolStripStatusLabel7.Size = New System.Drawing.Size(98, 17)
         Me.ToolStripStatusLabel7.Text = "Temp. Entrada:"
         '
         'ToolStripStatusLabel6
@@ -150,7 +150,7 @@
         '
         Me.ToolStripStatusLabel9.Image = CType(resources.GetObject("ToolStripStatusLabel9.Image"), System.Drawing.Image)
         Me.ToolStripStatusLabel9.Name = "ToolStripStatusLabel9"
-        Me.ToolStripStatusLabel9.Size = New System.Drawing.Size(94, 17)
+        Me.ToolStripStatusLabel9.Size = New System.Drawing.Size(88, 17)
         Me.ToolStripStatusLabel9.Text = "Temp. Salida:"
         '
         'ToolStripStatusLabel8
@@ -162,7 +162,7 @@
         'ToolStripStatusLabel5
         '
         Me.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5"
-        Me.ToolStripStatusLabel5.Size = New System.Drawing.Size(90, 17)
+        Me.ToolStripStatusLabel5.Size = New System.Drawing.Size(137, 17)
         Me.ToolStripStatusLabel5.Spring = True
         '
         'ToolStripProgressBar1
@@ -175,7 +175,7 @@
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GraficaToolStripMenuItem, Me.ToolStripComboBox1, Me.ToolStripComboBox2, Me.EditarToolStripMenuItem, Me.OpcionesToolStripMenuItem, Me.BuscarToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(928, 27)
+        Me.MenuStrip1.Size = New System.Drawing.Size(928, 25)
         Me.MenuStrip1.TabIndex = 10
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -183,182 +183,182 @@
         '
         Me.GraficaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FechaToolStripMenuItem, Me.AnalizarToolStripMenuItem, Me.ExportarToolStripMenuItem, Me.InfoAdicionalToolStripMenuItem, Me.ActualizarToolStripMenuItem, Me.AcercaDeToolStripMenuItem})
         Me.GraficaToolStripMenuItem.Name = "GraficaToolStripMenuItem"
-        Me.GraficaToolStripMenuItem.Size = New System.Drawing.Size(56, 23)
+        Me.GraficaToolStripMenuItem.Size = New System.Drawing.Size(53, 21)
         Me.GraficaToolStripMenuItem.Text = "Grafica"
         '
         'FechaToolStripMenuItem
         '
         Me.FechaToolStripMenuItem.Name = "FechaToolStripMenuItem"
-        Me.FechaToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.FechaToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.FechaToolStripMenuItem.Text = "Fecha..."
         '
         'AnalizarToolStripMenuItem
         '
         Me.AnalizarToolStripMenuItem.Name = "AnalizarToolStripMenuItem"
         Me.AnalizarToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
-        Me.AnalizarToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.AnalizarToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.AnalizarToolStripMenuItem.Text = "Analizar..."
         '
         'ExportarToolStripMenuItem
         '
         Me.ExportarToolStripMenuItem.Name = "ExportarToolStripMenuItem"
-        Me.ExportarToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.ExportarToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.ExportarToolStripMenuItem.Text = "Exportar..."
         '
         'InfoAdicionalToolStripMenuItem
         '
         Me.InfoAdicionalToolStripMenuItem.Name = "InfoAdicionalToolStripMenuItem"
-        Me.InfoAdicionalToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.InfoAdicionalToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.InfoAdicionalToolStripMenuItem.Text = "Info. Adicional..."
         '
         'ActualizarToolStripMenuItem
         '
         Me.ActualizarToolStripMenuItem.Name = "ActualizarToolStripMenuItem"
         Me.ActualizarToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.ActualizarToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.ActualizarToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.ActualizarToolStripMenuItem.Text = "Actualizar"
         '
         'AcercaDeToolStripMenuItem
         '
         Me.AcercaDeToolStripMenuItem.Name = "AcercaDeToolStripMenuItem"
-        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.AcercaDeToolStripMenuItem.Text = "Acerca de..."
         '
         'ToolStripComboBox1
         '
         Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
-        Me.ToolStripComboBox1.Size = New System.Drawing.Size(75, 23)
+        Me.ToolStripComboBox1.Size = New System.Drawing.Size(75, 21)
         '
         'ToolStripComboBox2
         '
         Me.ToolStripComboBox2.Name = "ToolStripComboBox2"
-        Me.ToolStripComboBox2.Size = New System.Drawing.Size(281, 23)
+        Me.ToolStripComboBox2.Size = New System.Drawing.Size(281, 21)
         '
         'EditarToolStripMenuItem
         '
         Me.EditarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopiarToolStripMenuItem})
         Me.EditarToolStripMenuItem.Name = "EditarToolStripMenuItem"
-        Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(49, 23)
+        Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(47, 21)
         Me.EditarToolStripMenuItem.Text = "Editar"
         '
         'CopiarToolStripMenuItem
         '
         Me.CopiarToolStripMenuItem.Name = "CopiarToolStripMenuItem"
         Me.CopiarToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopiarToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
+        Me.CopiarToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.CopiarToolStripMenuItem.Text = "Copiar"
         '
         'OpcionesToolStripMenuItem
         '
         Me.OpcionesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfigurarToolStripMenuItem, Me.EscalaToolStripMenuItem, Me.OpacidadToolStripMenuItem})
         Me.OpcionesToolStripMenuItem.Name = "OpcionesToolStripMenuItem"
-        Me.OpcionesToolStripMenuItem.Size = New System.Drawing.Size(69, 23)
+        Me.OpcionesToolStripMenuItem.Size = New System.Drawing.Size(63, 21)
         Me.OpcionesToolStripMenuItem.Text = "Opciones"
         '
         'ConfigurarToolStripMenuItem
         '
         Me.ConfigurarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ColorTempEntradaToolStripMenuItem, Me.ColorTempSalidaToolStripMenuItem, Me.ColorCargaToolStripMenuItem, Me.ColorSecundarioCargaToolStripMenuItem, Me.FuenteGraficaToolStripMenuItem, Me.FuenteAnalisisToolStripMenuItem})
         Me.ConfigurarToolStripMenuItem.Name = "ConfigurarToolStripMenuItem"
-        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.ConfigurarToolStripMenuItem.Text = "Configurar"
         '
         'ColorTempEntradaToolStripMenuItem
         '
         Me.ColorTempEntradaToolStripMenuItem.Name = "ColorTempEntradaToolStripMenuItem"
-        Me.ColorTempEntradaToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.ColorTempEntradaToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.ColorTempEntradaToolStripMenuItem.Text = "Color Temp. Entrada"
         '
         'ColorTempSalidaToolStripMenuItem
         '
         Me.ColorTempSalidaToolStripMenuItem.Name = "ColorTempSalidaToolStripMenuItem"
-        Me.ColorTempSalidaToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.ColorTempSalidaToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.ColorTempSalidaToolStripMenuItem.Text = "Color Temp. Salida"
         '
         'ColorCargaToolStripMenuItem
         '
         Me.ColorCargaToolStripMenuItem.Name = "ColorCargaToolStripMenuItem"
-        Me.ColorCargaToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.ColorCargaToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.ColorCargaToolStripMenuItem.Text = "Color Carga"
         '
         'ColorSecundarioCargaToolStripMenuItem
         '
         Me.ColorSecundarioCargaToolStripMenuItem.Name = "ColorSecundarioCargaToolStripMenuItem"
-        Me.ColorSecundarioCargaToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.ColorSecundarioCargaToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.ColorSecundarioCargaToolStripMenuItem.Text = "Color Secundario Carga"
         '
         'FuenteGraficaToolStripMenuItem
         '
         Me.FuenteGraficaToolStripMenuItem.Name = "FuenteGraficaToolStripMenuItem"
-        Me.FuenteGraficaToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.FuenteGraficaToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.FuenteGraficaToolStripMenuItem.Text = "Fuente grafica"
         '
         'FuenteAnalisisToolStripMenuItem
         '
         Me.FuenteAnalisisToolStripMenuItem.Name = "FuenteAnalisisToolStripMenuItem"
-        Me.FuenteAnalisisToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.FuenteAnalisisToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.FuenteAnalisisToolStripMenuItem.Text = "Fuente analisis"
         '
         'EscalaToolStripMenuItem
         '
         Me.EscalaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CentigradosToolStripMenuItem, Me.FarenheitToolStripMenuItem})
         Me.EscalaToolStripMenuItem.Name = "EscalaToolStripMenuItem"
-        Me.EscalaToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EscalaToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.EscalaToolStripMenuItem.Text = "Escala"
         '
         'CentigradosToolStripMenuItem
         '
         Me.CentigradosToolStripMenuItem.Name = "CentigradosToolStripMenuItem"
-        Me.CentigradosToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.CentigradosToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
         Me.CentigradosToolStripMenuItem.Text = "Centigrados"
         '
         'FarenheitToolStripMenuItem
         '
         Me.FarenheitToolStripMenuItem.Name = "FarenheitToolStripMenuItem"
-        Me.FarenheitToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.FarenheitToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
         Me.FarenheitToolStripMenuItem.Text = "Farenheit"
         '
         'OpacidadToolStripMenuItem
         '
         Me.OpacidadToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ToolStripMenuItem4, Me.ToolStripMenuItem5})
         Me.OpacidadToolStripMenuItem.Name = "OpacidadToolStripMenuItem"
-        Me.OpacidadToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OpacidadToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.OpacidadToolStripMenuItem.Text = "Opacidad"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(114, 22)
         Me.ToolStripMenuItem2.Text = "100%"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(114, 22)
         Me.ToolStripMenuItem3.Text = "90%"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(114, 22)
         Me.ToolStripMenuItem4.Text = "80%"
         '
         'ToolStripMenuItem5
         '
         Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(102, 22)
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(114, 22)
         Me.ToolStripMenuItem5.Text = "70%"
         '
         'BuscarToolStripMenuItem
         '
         Me.BuscarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CargaToolStripMenuItem1})
         Me.BuscarToolStripMenuItem.Name = "BuscarToolStripMenuItem"
-        Me.BuscarToolStripMenuItem.Size = New System.Drawing.Size(54, 23)
+        Me.BuscarToolStripMenuItem.Size = New System.Drawing.Size(51, 21)
         Me.BuscarToolStripMenuItem.Text = "Buscar"
         '
         'CargaToolStripMenuItem1
         '
         Me.CargaToolStripMenuItem1.Name = "CargaToolStripMenuItem1"
-        Me.CargaToolStripMenuItem1.Size = New System.Drawing.Size(105, 22)
+        Me.CargaToolStripMenuItem1.Size = New System.Drawing.Size(114, 22)
         Me.CargaToolStripMenuItem1.Text = "Carga"
         '
         'Timer1
@@ -371,9 +371,9 @@
         ChartArea1.Name = "ChartArea1"
         Me.Chart1.ChartAreas.Add(ChartArea1)
         Me.Chart1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Chart1.Location = New System.Drawing.Point(0, 27)
+        Me.Chart1.Location = New System.Drawing.Point(0, 25)
         Me.Chart1.Name = "Chart1"
-        Me.Chart1.Size = New System.Drawing.Size(928, 251)
+        Me.Chart1.Size = New System.Drawing.Size(928, 253)
         Me.Chart1.TabIndex = 11
         Me.Chart1.Text = "Chart1"
         '

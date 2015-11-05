@@ -15,26 +15,25 @@ Module Module1
     Public lColorSecundarioPaso As Integer
     Public lColorPasoAlt As Integer
     Public lColorSecundarioPasoAlt As Integer
-
-
     Public bEscalaFarenheit As Boolean
     Public sNombreFuenteP As String
     Public lTamanioPequenio As Long
     Public sNombreFuenteG As String
     Public lTamanioGrande As Long
-
     Public sServer As String
-    'Public sAnchoGrafica As Single
-    'Public sInicioGrafica As Single
     Public iUsuario As Integer
     Public bRegistroGuardado As Boolean
     Public sSeparador As String
     Public sVigilarTempEntrada As String
     Public sVigilarTempSalida As String
-
     Public lMinutosTempSalidaMantenida As Long
     Public lMinutosTempEntradaMantenida As Long
     Public lRangoAceptable As Long
+    Public cFormulasTempSalida As Collection
+    Public cFormulasTempEntrada As Collection
+    Public lMinutosActualizar As Long
+    Public sSecadoraActual As String
+    Public sVersion As String
     Public Structure Temperatura
         Public Valor As Integer
         Public Fecha As Date
@@ -44,7 +43,6 @@ Module Module1
         Public Inicio As Date
         Public Fin As Date
         Public Esclavo As Integer
-        'Public Puntos As Collection
     End Structure
     Public Structure Paso
         Public Numero As Integer
@@ -75,15 +73,19 @@ Module Module1
         Public Etiqueta2 As String
         Public Entrada1 As Boolean
         Public Entrada2 As Boolean
+        Public Formula As Integer
+        Public Paso As Integer
         Public Tooltip As String
         Public Vacio As Boolean
     End Structure
+
     Function ObtenerPaso(ByVal sDisplay As String) As Long
         Dim sTemp As String
         Dim sPaso As String
         Dim iIter As Integer
         Dim lPaso As Long
         Dim sCaracter As String
+
         sTemp = ""
         Try
             If Len(sDisplay) > 0 Then
@@ -98,9 +100,7 @@ Module Module1
                     For iIter = 161 To 170
                         sTemp = sTemp.Replace(Chr(iIter), "")
                     Next iIter
-                    'Debug.Print(lPaso)
                 End If
-
                 sTemp = sTemp.Substring(1, 40)
                 If InStr(sTemp, "Paso #") > 0 Then
                     sPaso = ""
@@ -116,34 +116,25 @@ Module Module1
                     sPaso = ""
                     iIter = InStr(sTemp, "Linea") - 3
                     Do
-
                         sCaracter = sTemp.Substring(iIter, 1)
                         If IsNumeric(sCaracter) Then sPaso = sPaso & sCaracter
                         iIter = iIter + 1
                     Loop Until sCaracter = "L" Or iIter >= Len(sTemp)
                     lPaso = Val(sPaso)
-
                 End If
-
-
             Else
                 lPaso = 0
             End If
         Catch
-            'Imprimir("Error al obtener formula. (" & sDisplay & ") secadora " & iSecadora.ToString)
             lPaso = -1
         End Try
-
-        Debug.Print(lPaso & vbTab & sTemp & vbTab & sDisplay)
         ObtenerPaso = lPaso
     End Function
 
 
     Sub RealizarConexion()
-
         mConexion = New MySqlConnection()
         If mConexion.State = ConnectionState.Open Then
-
         Else
             Try
                 mConexion.ConnectionString = "server=" & sServer & ";" & "user=root;" & "password=manttocl;" & "database=dryermon"
@@ -167,6 +158,7 @@ Module Module1
         Dim sTerminal As String
         Dim sVersion As String
         Dim iIdUsuario As Integer
+
         sUsuario = Left(Environment.UserName, 20)
         sTerminal = Left(Environment.MachineName, 20)
         sVersion = Left(Application.ProductVersion.ToString, 15)
@@ -179,7 +171,7 @@ Module Module1
         If mConexion.State = ConnectionState.Open Then
             Do
                 mComando.Connection = mConexion
-                sSQL = "select id from usuarios where usuario='" & sUsuario & "' and terminal='" & sTerminal & "'"
+                sSQL = "SELECT id FROM usuarios WHERE usuario='" & sUsuario & "' AND terminal='" & sTerminal & "'"
                 mDataReader = Consulta(sSQL)
                 If mDataReader.Read Then
                     iIdUsuario = mDataReader.Item(0)
@@ -189,11 +181,11 @@ Module Module1
                 End If
                 mDataReader.Close()
                 If bEncontrado Then
-                    sSQL = "update usuarios set version='" & sVersion & "',fechalogin='" & Now.ToString("yyyy-MM-dd HH:mm:ss") & "' where id=" & iIdUsuario.ToString
+                    sSQL = "UPDATE usuarios SET version='" & sVersion & "',fechalogin='" & Now.ToString("yyyy-MM-dd HH:mm:ss") & "' WHERE id=" & iIdUsuario.ToString
                     mComando.CommandText = sSQL
                     mComando.ExecuteNonQuery()
                 Else
-                    sSQL = "insert into usuarios values (0,'" & sUsuario & "','" & sTerminal & "','" & sVersion & "','" & Now.ToString("yyyy-MM-dd HH:mm:ss") & "','" & Now.ToString("yyyy-MM-dd HH:mm:ss") & "')"
+                    sSQL = "INSERT INTO usuarios VALUES (0,'" & sUsuario & "','" & sTerminal & "','" & sVersion & "','" & Now.ToString("yyyy-MM-dd HH:mm:ss") & "','" & Now.ToString("yyyy-MM-dd HH:mm:ss") & "')"
                     mComando.CommandText = sSQL
                     mComando.ExecuteNonQuery()
                 End If
@@ -206,12 +198,13 @@ Module Module1
         Dim mLector As MySqlDataReader
         Dim sSQL As String
         Dim bRepetido As Boolean
+
         bRepetido = False
         mComando = New MySql.Data.MySqlClient.MySqlCommand
         If mConexion.State = ConnectionState.Open Then
             sSQL = ""
             Try
-                mLector = Consulta("select id from cargas where idlectura=" & iIdLectura.ToString & " and formula=" & iFormula.ToString & " and marca='" & sMarca & "' and po='" & sPO & "' and corte='" & sCorte & "' and proceso='" & sProceso & "' and fase='" & sFase & "' and cantidad=" & iCantidad.ToString & " and observaciones='" & sObservaciones & "'")
+                mLector = Consulta("SELECT id FROM cargas WHERE idlectura=" & iIdLectura.ToString & " AND formula=" & iFormula.ToString & " AND marca='" & sMarca & "' AND po='" & sPO & "' AND corte='" & sCorte & "' AND proceso='" & sProceso & "' AND fase='" & sFase & "' AND cantidad=" & iCantidad.ToString & " AND observaciones='" & sObservaciones & "'")
                 If mLector.Read Then
                     If mLector.Item("id") > 0 Then
                         bRepetido = True
@@ -220,7 +213,7 @@ Module Module1
                 mLector.Close()
                 If Not bRepetido Then
                     mComando.Connection = mConexion
-                    sSQL = "insert into cargas values (0," & iIdLectura.ToString & ",'" & Now.ToString("yyyy-MM-dd HH:mm:ss") & "'," & iFormula.ToString & ",'" & sMarca & "','" & sPO & "','" & sCorte & "','" & sProceso & "','" & sFase & "'," & iCantidad.ToString & ",'" & sObservaciones & "'," & iUsuario.ToString & ")"
+                    sSQL = "INSERT INTO cargas VALUES (0," & iIdLectura.ToString & ",'" & Now.ToString("yyyy-MM-dd HH:mm:ss") & "'," & iFormula.ToString & ",'" & sMarca & "','" & sPO & "','" & sCorte & "','" & sProceso & "','" & sFase & "'," & iCantidad.ToString & ",'" & sObservaciones & "'," & iUsuario.ToString & ")"
                     mComando.CommandText = sSQL
                     mComando.ExecuteNonQuery()
                 End If
@@ -236,12 +229,14 @@ Module Module1
     End Sub
     Sub GuardarAnchoColumnas(ByVal Forma As Form, ByVal DataGrid As DataGridView)
         Dim iColumna As Integer
+
         For iColumna = 0 To DataGrid.Columns.Count - 1
             SaveSetting("MonitorSecadoras", "Grafica", Forma.Name & "AnchoColumna" & iColumna, DataGrid.Columns.Item(iColumna).Width.ToString)
         Next
     End Sub
     Sub CargarAnchoColumnas(ByVal Forma As Form, ByVal DataGrid As DataGridView)
         Dim iColumna As Integer
+
         For iColumna = 0 To DataGrid.Columns.Count - 1
             DataGrid.Columns.Item(iColumna).Width = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "AnchoColumna" & iColumna.ToString, "100"))
         Next
@@ -263,17 +258,16 @@ Module Module1
         Dim iWidth As Integer
         Dim iHeight As Integer
         Dim sOpacidad As Single
+
         sOpacidad = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Opacidad", "1"))
         iTop = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Top", "0"))
         iLeft = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Left", "0"))
         iWidth = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Width", "400"))
         iHeight = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Height", "300"))
-
         If iLeft > System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width - iWidth Then iLeft = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width - iWidth
         If iTop > System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height - iHeight Then iTop = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height - iHeight
         If iLeft < 0 Then iLeft = 0
         If iTop < 0 Then iTop = 0
-
         Forma.Opacity = sOpacidad
         Forma.Top = iTop
         Forma.Left = iLeft
@@ -290,6 +284,7 @@ Module Module1
     Sub MouseEncima(ByVal sender As Object, ByVal e As System.EventArgs)
         Dim iItem As Integer
         Dim sTexto As String
+
         iItem = Val(sender.Text) - 1
         If iItem < Form1.ToolStripComboBox2.Items.Count Then
             sTexto = Mid(Form1.ToolStripComboBox2.Items(iItem), InStr(Form1.ToolStripComboBox2.Items(iItem), sSeparador) + Len(sSeparador))
@@ -300,6 +295,7 @@ Module Module1
     Function Consulta(ByVal sSQL As String) As MySqlDataReader
         Dim mComando As MySqlCommand
         Dim mDataReader As MySqlDataReader
+
         mComando = New MySqlCommand
         If mConexion.State = ConnectionState.Open Then
             mComando.Connection = mConexion
@@ -309,7 +305,7 @@ Module Module1
             Catch mierror As MySql.Data.MySqlClient.MySqlException
                 Select Case mierror.Number
                     Case 1064
-                        mDataReader = Consulta("select * from usuarios where id=0")
+                        mDataReader = Consulta("SELECT * FROM usuarios WHERE id=0")
                     Case Else
                         RealizarConexion()
                         mDataReader = Consulta(sSQL)
@@ -328,8 +324,8 @@ Module Module1
         Dim iMinutos As Integer
         Dim iSegundos As Integer
         Dim sResultado As String
-        'Dim sFormato As String
         Dim dTemp As TimeSpan
+
         dTemp = (dFin.Subtract(dInicio))
         iDias = dTemp.Days
         iHoras = dTemp.Hours
@@ -360,6 +356,7 @@ Module Module1
     End Function
     Function Escala(ByVal lTemp As Integer) As Integer
         Dim lResultado As Integer
+
         If bEscalaFarenheit Then
             lResultado = lTemp
         Else
@@ -369,6 +366,7 @@ Module Module1
     End Function
     Function BoolToOnOff(ByVal Estado As Boolean) As String
         Dim sResultado As String
+
         If Estado Then
             sResultado = "Encendido"
         Else
@@ -390,4 +388,58 @@ Module Module1
             Pendiente = 0
         End If
     End Function
+    Sub GuardarOpciones()
+        SaveSetting("MonitorSecadoras", "Grafica", "MinutosActualizar", lMinutosActualizar.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "ColorEntrada", lColorTempEntrada.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "ColorSalida", lColorTempSalida.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "ColorCarga", lColorCarga.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "ColorSecundarioCarga", lColorSecundarioCarga.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "ColorPaso", lColorPaso.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "ColorSecundarioPaso", lColorSecundarioPaso.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "ColorPasoAlt", lColorPasoAlt.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "ColorSecundarioPasoAlt", lColorSecundarioPasoAlt.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "NombreFuenteP", sNombreFuenteP)
+        SaveSetting("MonitorSecadoras", "Grafica", "TamanioPequenio", lTamanioPequenio.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "NombreFuenteG", sNombreFuenteG)
+        SaveSetting("MonitorSecadoras", "Grafica", "TamanioGrande", lTamanioGrande.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "Separador", sSeparador)
+        SaveSetting("MonitorSecadoras", "Grafica", "Server", sServer)
+        SaveSetting("MonitorSecadoras", "Grafica", "SecadoraActual", sSecadoraActual)
+        'SaveSetting("MonitorSecadoras", "Grafica", "EsclavoActual", ToolStripStatusLabel11.Tag)
+        SaveSetting("MonitorSecadoras", "Grafica", "VigilarTempEntrada", sVigilarTempEntrada)
+        SaveSetting("MonitorSecadoras", "Grafica", "VigilarTempSalida", sVigilarTempSalida)
+        SaveSetting("MonitorSecadoras", "Grafica", "RangoAceptable", lRangoAceptable.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "MinutosTempSalidaMantentenida", lMinutosTempSalidaMantenida.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "MinutosTempEntradaMantenida", lMinutosTempEntradaMantenida.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "EscalaFarenheit", -bEscalaFarenheit)
+        SaveSetting("MonitorSecadoras", "Grafica", "Version", Application.ProductVersion.ToString)
+    End Sub
+    Sub CargarOpciones()
+        sServer = GetSetting("MonitorSecadoras", "Grafica", "Server", "mttoserver")
+        lMinutosActualizar = Val(GetSetting("MonitorSecadoras", "Grafica", "MinutosActualizar", "10"))
+        lColorTempEntrada = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorEntrada", "255"))
+        lColorTempSalida = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorSalida", "16711680"))
+        lColorCarga = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorCarga", "12632256"))
+        lColorSecundarioCarga = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorSecundarioCarga", "16777215"))
+        lColorPaso = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorPaso", "12632256"))
+        lColorSecundarioPaso = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorSecundarioPaso", "16777215"))
+        lColorPasoAlt = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorPasoAlt", "8421504"))
+        lColorSecundarioPasoAlt = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorSecundarioPasoAlt", "16777215"))
+        sNombreFuenteP = GetSetting("MonitorSecadoras", "Grafica", "NombreFuenteP", "Verdana")
+        lTamanioPequenio = Val(GetSetting("MonitorSecadoras", "Grafica", "TamanioPequenio", "7"))
+        sNombreFuenteG = GetSetting("MonitorSecadoras", "Grafica", "NombreFuenteG", "Verdana")
+        lTamanioGrande = Val(GetSetting("MonitorSecadoras", "Grafica", "TamanioGrande", "10"))
+        sSeparador = GetSetting("MonitorSecadoras", "Grafica", "Separador", ", ")
+        sVigilarTempEntrada = GetSetting("MonitorSecadoras", "Grafica", "VigilarTempEntrada", "198,480,600")
+        sVigilarTempSalida = GetSetting("MonitorSecadoras", "Grafica", "VigilarTempSalida", "120,140,170,200")
+        lRangoAceptable = Val(GetSetting("MonitorSecadoras", "Grafica", "RangoAceptable", "5"))
+        lMinutosTempSalidaMantenida = Val(GetSetting("MonitorSecadoras", "Grafica", "MinutosTempSalidaMantenida", "5"))
+        lMinutosTempEntradaMantenida = Val(GetSetting("MonitorSecadoras", "Grafica", "MinutosTempEntradaMantenida", "5"))
+        bEscalaFarenheit = -Val(GetSetting("MonitorSecadoras", "Grafica", "EscalaFarenheit", "1"))
+        sSecadoraActual = GetSetting("MonitorSecadoras", "Grafica", "SecadoraActual", "10")
+        sVersion = GetSetting("MonitorSecadoras", "Grafica", "Version", "")
+        If Len(sVersion) = 0 Then
+            GuardarOpciones()
+        End If
+    End Sub
 End Module

@@ -46,26 +46,26 @@ Partial Class Form3
         '
         Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportarToolStripMenuItem, Me.SalirToolStripMenuItem})
         Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
-        Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
+        Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
         Me.ArchivoToolStripMenuItem.Text = "Archivo"
         '
         'ExportarToolStripMenuItem
         '
         Me.ExportarToolStripMenuItem.Name = "ExportarToolStripMenuItem"
-        Me.ExportarToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.ExportarToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.ExportarToolStripMenuItem.Text = "Exportar..."
         '
         'SalirToolStripMenuItem
         '
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.SalirToolStripMenuItem.Text = "Salir"
         '
         'EditarToolStripMenuItem
         '
         Me.EditarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopiarToolStripMenuItem, Me.ToolStripSeparator1, Me.SeleccionarTodoToolStripMenuItem})
         Me.EditarToolStripMenuItem.Name = "EditarToolStripMenuItem"
-        Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
+        Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(47, 20)
         Me.EditarToolStripMenuItem.Text = "Editar"
         '
         'CopiarToolStripMenuItem

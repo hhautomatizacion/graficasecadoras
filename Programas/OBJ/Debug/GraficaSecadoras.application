@@ -8,17 +8,17 @@
         <expiration maximumAge="0" unit="days" />
       </update>
     </subscription>
-    <deploymentProvider codebase="file://mantenimientocl/MonitorSecadoras/GraficaSecadoras/GraficaSecadoras.application" />
+    <deploymentProvider codebase="file://mttoserver/Descargas/GraficaSecadoras/GraficaSecadoras.application" />
   </deployment>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="GraficaSecadoras.exe.manifest" size="4832">
+    <dependentAssembly dependencyType="install" codebase="GraficaSecadoras.exe.manifest" size="4451">
       <assemblyIdentity name="GraficaSecadoras.exe" version="1.0.0.68" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>St1SLDiS/j33sYAhovKRtDFMoJs=</dsig:DigestValue>
+        <dsig:DigestValue>jY9nLzYI+LFHVDvbCjWj8FV+uFc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

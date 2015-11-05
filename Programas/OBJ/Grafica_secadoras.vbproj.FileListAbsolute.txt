@@ -268,3 +268,45 @@ C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Mon
 C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.exe
 C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.xml
 C:\Documents and Settings\Administrador\Mis documentos\Dropbox\Mis proyectos\Monitor secadoras\programa\GraficaSecadoras\obj\Debug\GraficaSecadoras.pdb
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\GraficaSecadoras.exe
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\GraficaSecadoras.xml
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\GraficaSecadoras.pdb
+C:\hh\graficasecadoras\trunk\Programas\bin\GraficaSecadoras.exe.manifest
+C:\hh\graficasecadoras\trunk\Programas\bin\GraficaSecadoras.application
+C:\hh\graficasecadoras\trunk\Programas\bin\GraficaSecadoras.exe
+C:\hh\graficasecadoras\trunk\Programas\bin\GraficaSecadoras.xml
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\ResolveAssemblyReference.cache
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Project1.AboutBox1.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Project1.Form2.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Project1.Form3.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Project1.busqueda.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Project1.Form4.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Project1.Form5.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Project1.Form6.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Project1.Form1.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Project1.infoadicional.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Project1.Resources.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\GraficaSecadoras.exe.licenses
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\GraficaSecadoras.TrustInfo.xml
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\GraficaSecadoras.exe.manifest
+C:\hh\graficasecadoras\trunk\Programas\obj\Debug\GraficaSecadoras.application
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\ResolveAssemblyReference.cache
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Project1.AboutBox1.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Project1.Form2.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Project1.Form3.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Project1.busqueda.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Project1.Form4.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Project1.Form5.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Project1.Form6.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Project1.Form1.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Project1.infoadicional.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Project1.Resources.resources
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\Grafica_secadoras.vbproj.GenerateResource.Cache
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\GraficaSecadoras.exe.licenses
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\GraficaSecadoras.TrustInfo.xml
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\GraficaSecadoras.exe.manifest
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\GraficaSecadoras.application
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\GraficaSecadoras.exe
+C:\hh\graficasecadoras\trunk\Programas\obj\Release\GraficaSecadoras.xml
+C:\hh\graficasecadoras\trunk\Programas\bin\GraficaSecadoras.pdb

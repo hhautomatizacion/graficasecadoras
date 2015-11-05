@@ -14,8 +14,8 @@ Public Class Form3
         Dim iMinutos As Integer
         Dim iSegundos As Integer
         Dim sResultado As String
-        'Dim sFormato As String
         Dim dTemp As Date
+
         dTemp = dFecha
         iDias = dTemp.Day
         iHoras = dTemp.Hour
@@ -40,14 +40,15 @@ Public Class Form3
         Dim mLector As MySql.Data.MySqlClient.MySqlDataReader
         Dim lMinimo As Long
         Dim sSQL As String
+
         cResultado = New Collection
-        sSQL = "select min(" & Campo & ") as minimo from lecturas where secadora=" & Secadora.ToString & " and fecha between '" & Inicio.ToString("yyyy-MM-dd HH:mm:ss") & "' and '" & Fin.ToString("yyyy-MM-dd HH:mm:ss") & "'"
+        sSQL = "SELECT MIN(" & Campo & ") AS minimo FROM lecturas WHERE secadora=" & Secadora.ToString & " AND fecha BETWEEN '" & Inicio.ToString("yyyy-MM-dd HH:mm:ss") & "' AND '" & Fin.ToString("yyyy-MM-dd HH:mm:ss") & "'"
         mLector = Consulta(sSQL)
         If mLector.Read Then
             lMinimo = mLector.Item("minimo")
         End If
         mLector.Close()
-        sSQL = "select fecha from lecturas where " & Campo & "=" & lMinimo & " and secadora=" & Secadora.ToString & " and fecha between '" & Inicio.ToString("yyyy-MM-dd HH:mm:ss") & "' and '" & Fin.ToString("yyyy-MM-dd HH:mm:ss") & "'"
+        sSQL = "SELECT fecha FROM lecturas WHERE " & Campo & "=" & lMinimo & " AND secadora=" & Secadora.ToString & " AND fecha BETWEEN '" & Inicio.ToString("yyyy-MM-dd HH:mm:ss") & "' AND '" & Fin.ToString("yyyy-MM-dd HH:mm:ss") & "'"
         mLector = Consulta(sSQL)
         Do While mLector.Read
             tResultado = Nothing
@@ -64,14 +65,15 @@ Public Class Form3
         Dim mLector As MySql.Data.MySqlClient.MySqlDataReader
         Dim lMaximo As Long
         Dim sSQL As String
+
         cResultado = New Collection
-        sSQL = "select max(" & Campo & ") as maximo from lecturas where secadora=" & Secadora.ToString & " and fecha between '" & Inicio.ToString("yyyy-MM-dd HH:mm:ss") & "' and '" & Fin.ToString("yyyy-MM-dd HH:mm:ss") & "'"
+        sSQL = "SELECT MAX(" & Campo & ") AS maximo FROM lecturas WHERE secadora=" & Secadora.ToString & " AND fecha BETWEEN '" & Inicio.ToString("yyyy-MM-dd HH:mm:ss") & "' AND '" & Fin.ToString("yyyy-MM-dd HH:mm:ss") & "'"
         mLector = Consulta(sSQL)
         If mLector.Read Then
             lMaximo = mLector.Item("maximo")
         End If
         mLector.Close()
-        sSQL = "select fecha from lecturas where " & Campo & "=" & lMaximo & " and secadora=" & Secadora.ToString & " and fecha between '" & Inicio.ToString("yyyy-MM-dd HH:mm:ss") & "' and '" & Fin.ToString("yyyy-MM-dd HH:mm:ss") & "'"
+        sSQL = "SELECT fecha FROM lecturas WHERE " & Campo & "=" & lMaximo & " AND secadora=" & Secadora.ToString & " AND fecha BETWEEN '" & Inicio.ToString("yyyy-MM-dd HH:mm:ss") & "' AND '" & Fin.ToString("yyyy-MM-dd HH:mm:ss") & "'"
         mLector = Consulta(sSQL)
         Do While mLector.Read
             tResultado = Nothing
@@ -83,6 +85,10 @@ Public Class Form3
         MaxTemp = cResultado
     End Function
     Private Sub detallegrafica_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        '   Autor: emmanuel156@gmail.com
+        '
+        '   [ ] Mostrar barra de progreso mientras se realiza el analisis.
+
         Dim sSecadora As String
         Dim sFechaInicio As String
         Dim sFechaFin As String
@@ -98,11 +104,9 @@ Public Class Form3
         Dim lIter As Long
         Dim sTempSalida() As String
         Dim sSQL As String
-        'Dim sVigilaTemperaturas As String
         Dim sTempEntrada() As String
         Dim iTempSalidaAnterior() As Integer
         Dim iTempEntradaAnterior() As Integer
-
         Dim iMaxTempEntrada As Integer
         Dim iMaxTempSalida As Integer
         Dim dHoraMaxTempEntrada As Date
@@ -111,48 +115,31 @@ Public Class Form3
         Dim iMinTempSalida As Integer
         Dim dHoraMinTempEntrada As Date
         Dim dHoraMinTempSalida As Date
-
-        'Dim iMaxTempSalida As Integer
-        'Dim dTiempoMaxTempSalida As Date
-        'Dim iMaxTempEntrada As Integer
-        'Dim dHoraMaxTempEntrada As Date
-        'Dim dHoraMaxTempSalida As Date
-        'Dim dTiempoMaxTempEntrada As Date
         Dim dTiempoTempSalidaMantenida() As Date
         Dim dTiempoTempEntradaMantenida() As Date
-        Dim lCargas(99) As Long
         Dim sCarga As String
-        Dim dTiempoPaso(99) As Collection
         Dim bMantieneTempSalida() As Boolean
         Dim bMantieneTempEntrada() As Boolean
         Dim lTotalCargas As Long
         Dim sCargas As String
-        Dim iFormula As Integer
+        Dim lFormula As Long
         Dim dIniciaFormula As Date
         Dim sTemp() As String
-        'Dim sMantieneTempSalida As String
-        'Dim sMantieneTempEntrada As String
         Dim mLector As MySql.Data.MySqlClient.MySqlDataReader
-        'Dim cID As Collection
         Dim cCargas As Collection
+        Dim dCuentaCargas As SortedList
 
-
+        dCuentaCargas = New SortedList
         ColocarForm(Me)
-
-
         Try
             ListBox1.Font = New Font(sNombreFuenteG, lTamanioGrande)
         Catch
-            'sNombreFuenteG = ListBox1.Font.Name
-            'lTamanioGrande = ListBox1.Font.Size
         End Try
         sTemp = Split(Me.Tag.ToString, sSeparador)
-
-
         sSecadora = sTemp(0)
         sFechaInicio = sTemp(1)
         sFechaFin = sTemp(2)
-        mLector = Consulta("select nombre from esclavos where esclavo=" & sSecadora)
+        mLector = Consulta("SELECT nombre FROM esclavos WHERE esclavo=" & sSecadora)
         If mLector.Read Then
             Me.Text = "Secadora " & mLector.Item("nombre") & ", " & sFechaInicio & " - " & sFechaFin & ""
             ListBox1.Items.Add("Secadora:         :" & vbTab & mLector.Item("nombre"))
@@ -163,17 +150,15 @@ Public Class Form3
         ReDim bMantieneTempEntrada(UBound(sTempEntrada))
         ReDim dTiempoTempEntradaMantenida(UBound(sTempEntrada))
 
-
         sTempSalida = Split(sVigilarTempSalida, ",")
         ReDim iTempSalidaAnterior(UBound(sTempSalida))
         ReDim bMantieneTempSalida(UBound(sTempSalida))
         ReDim dTiempoTempSalidaMantenida(UBound(sTempSalida))
-        sSQL = "SELECT * FROM lecturas where secadora=" & sSecadora & " and fecha between '" & sFechaInicio & "' and '" & sFechaFin & "' order by fecha"
+        sSQL = "SELECT * FROM lecturas WHERE secadora=" & sSecadora & " AND fecha BETWEEN '" & sFechaInicio & "' AND '" & sFechaFin & "' ORDER BY fecha"
         lContador = 0
         dTiempoRegistrado = New Date
         TiempoTrabajo = New Date
         UltimoTiempo = New Date
-
         cCargas = New Collection
         sInfoAdicional = ""
         sCargas = ""
@@ -181,7 +166,6 @@ Public Class Form3
         mLector = Consulta(sSQL)
         iMinTempEntrada = 1024
         iMinTempSalida = 1024
-
         Do While mLector.Read
             UltimoTiempo = mLector.Item(1)
             bVentiladorTrabajando = mLector.Item(7)
@@ -195,25 +179,25 @@ Public Class Form3
                     dTiempoRegistrado = dTiempoRegistrado + (UltimoTiempo - TiempoAnterior)
                 End If
             End If
-
             If bVentiladorTrabajando And bVentiladorTrabajandoAnterior = False Then
-
-                iFormula = CInt(mLector.Item(5))
+                lFormula = CInt(mLector.Item(5))
                 dIniciaFormula = UltimoTiempo
             End If
             If bVentiladorTrabajando And bVentiladorTrabajandoAnterior = True Then
-
-                If iFormula = 0 Then
-                    iFormula = CInt(mLector.Item(5))
+                If lFormula = 0 Then
+                    lFormula = CInt(mLector.Item(5))
                 End If
                 If (UltimoTiempo - TiempoAnterior).TotalMinutes < 2 Then
                     TiempoTrabajo = TiempoTrabajo + (UltimoTiempo - TiempoAnterior)
                 End If
             End If
             If bVentiladorTrabajandoAnterior = True And bVentiladorTrabajando = False Then
-
-                lCargas(iFormula) = lCargas(iFormula) + 1
-                sCargas = sCargas & lTotalCargas & vbTab & " Inicia formula: " & iFormula.ToString.PadLeft(3) & " a las " & vbTab & FormatoHora(dIniciaFormula) & ", termina " & vbTab & FormatoHora(UltimoTiempo) & " duracion " & LapsoTiempo(dIniciaFormula, UltimoTiempo) & vbCrLf
+                If dCuentaCargas.ContainsKey(lFormula) Then
+                    dCuentaCargas(lFormula) = dCuentaCargas(lFormula) + 1
+                Else
+                    dCuentaCargas.Add(lFormula, 1)
+                End If
+                sCargas = sCargas & lTotalCargas & vbTab & " Inicia formula: " & lFormula.ToString.PadLeft(3) & " a las " & vbTab & FormatoHora(dIniciaFormula) & ", termina " & vbTab & FormatoHora(UltimoTiempo) & " duracion " & LapsoTiempo(dIniciaFormula, UltimoTiempo) & vbCrLf
 
                 lTotalCargas = lTotalCargas + 1
                 cCargas.Add(sSecadora & sSeparador & (lTotalCargas - 1).ToString & sSeparador & dIniciaFormula.ToString("yyyy-MM-dd HH:mm:ss") & sSeparador & UltimoTiempo.ToString("yyyy-MM-dd HH:mm:ss"))
@@ -222,42 +206,34 @@ Public Class Form3
             If mLector.Item(3) > iMaxTempEntrada Then
                 iMaxTempEntrada = mLector.Item(3)
                 dHoraMaxTempEntrada = mLector.Item("fecha")
-                'dTiempoMaxTempEntrada = CDate((UltimoTiempo - PrimerTiempo).ToString)
+
             End If
             If mLector.Item(4) > iMaxTempSalida Then
                 iMaxTempSalida = mLector.Item(4)
                 dHoraMaxTempSalida = mLector.Item("fecha")
-                'dTiempoMaxTempSalida = CDate((UltimoTiempo - PrimerTiempo).ToString)
+
             End If
             If mLector.Item(3) < iMinTempEntrada Then
                 iMinTempEntrada = mLector.Item(3)
                 dHoraMinTempEntrada = mLector.Item("fecha")
-                'dTiempoMinTempEntrada = CDate((UltimoTiempo - PrimerTiempo).ToString)
+
             End If
             If mLector.Item(4) < iMinTempSalida Then
                 iMinTempSalida = mLector.Item(4)
                 dHoraMinTempSalida = mLector.Item("fecha")
-                'dTiempoMinTempSalida = CDate((UltimoTiempo - PrimerTiempo).ToString)
+
             End If
-
-
-            'iPasoAnterior = iPasoActual
             bVentiladorTrabajandoAnterior = bVentiladorTrabajando
             TiempoAnterior = UltimoTiempo
             lContador = lContador + 1
         Loop
         mLector.Close()
-
-
         If PrimerTiempo.Day = UltimoTiempo.Day Then
             sFormatoAcomodar = "hh:mm:ss tt"
         Else
             sFormatoAcomodar = "yyyy-MM-dd hh:mm:ss tt"
-
-
         End If
         lTotalCargas = 0
-
         ListBox1.Items.Add("Hora de inicio    :" & vbTab & (PrimerTiempo).ToString("yyyy-MM-dd HH:mm:ss"))
         ListBox1.Items.Add("Hora de fin       :" & vbTab & (UltimoTiempo).ToString("yyyy-MM-dd HH:mm:ss"))
         ListBox1.Items.Add("Tiempo grafica    :" & vbTab & LapsoTiempo(PrimerTiempo, UltimoTiempo))
@@ -270,14 +246,10 @@ Public Class Form3
         ListBox1.Items.Add("Maxima temp salida  :" & vbTab & ValToTemp(iMaxTempSalida) & " a las " & FormatoHora(dHoraMaxTempSalida) & "")
         ListBox1.Items.Add("Temp entrada        :" & vbTab & Drawing.ColorTranslator.FromOle(lColorTempEntrada).ToString)
         ListBox1.Items.Add("Temp salida         :" & vbTab & Drawing.ColorTranslator.FromOle(lColorTempSalida).ToString)
-
-
         ListBox1.Items.Add("-")
-        For lIter = 0 To 99
-            If lCargas(lIter) > 0 Then
-                ListBox1.Items.Add("Formula " & vbTab & lIter.ToString.PadLeft(3) & ": " & vbTab & lCargas(lIter).ToString.PadLeft(5) & " cargas")
-                lTotalCargas = lTotalCargas + lCargas(lIter)
-            End If
+        For Each lIter In dCuentaCargas.Keys
+            ListBox1.Items.Add("Formula " & vbTab & lIter.ToString.PadLeft(3) & ": " & vbTab & dCuentaCargas(lIter) & " cargas")
+            lTotalCargas = lTotalCargas + dCuentaCargas(lIter)
         Next lIter
         ListBox1.Items.Add("Total de cargas:" & vbTab & lTotalCargas.ToString.PadLeft(5) & " cargas")
         ListBox1.Items.Add("-")
@@ -286,7 +258,7 @@ Public Class Form3
             sFechaInicio = sTemp(2)
             sFechaFin = sTemp(3)
             AnalizarCarga(sSecadora, sTemp(1), sFechaInicio, sFechaFin)
-        Next
+        Next sCarga
         sTemp = Split(sInfoAdicional, vbCrLf)
         For lIter = 0 To UBound(sTemp)
             ListBox1.Items.Add(sTemp(lIter))
@@ -296,7 +268,12 @@ Public Class Form3
         ListBox1.Items.Add("+")
     End Sub
 
-    Private Sub AnalizarCarga(ByVal sSecadora As String, ByVal sCarga As String, ByVal sfechainicio As String, ByVal sfechafin As String)
+    Private Sub AnalizarCarga(ByVal sSecadora As String, ByVal sCarga As String, ByVal sFechaInicio As String, ByVal sFechaFin As String)
+        '   Autor: emmanuel156@gmail.com
+        '
+        '   [x] Corregir error donde tiempo inicio paso es mayor que tiempo fin paso. (Realizado el 25oct2015 por emmanuel156@gmail.com)
+        '   [ ] Reemplazar busqueda de temperaturas maxima minima por consulta sql.
+
         Dim dTiempoRegistrado As Date
         Dim TiempoTrabajo As Date
         Dim TiempoAnterior As Date
@@ -313,34 +290,27 @@ Public Class Form3
         Dim sTempEntrada() As String
         Dim iTempSalidaAnterior() As Integer
         Dim iTempEntradaAnterior() As Integer
-
         Dim iMaxTempEntrada As Integer
         Dim iMaxTempSalida As Integer
         Dim dHoraMaxTempEntrada As Date
         Dim dHoraMaxTempSalida As Date
         Dim dTiempoMaxTempEntrada As Date
         Dim dTiempoMaxTempSalida As Date
-
         Dim iMinTempEntrada As Integer
         Dim iMinTempSalida As Integer
         Dim dHoraMinTempEntrada As Date
         Dim dHoraMinTempSalida As Date
         Dim dTiempoMinTempEntrada As Date
         Dim dTiempoMinTempSalida As Date
-
         Dim dTiempoTempSalidaMantenida() As Date
         Dim dTiempoTempEntradaMantenida() As Date
-        Dim lCargas(99) As Long
-        Dim dTiempoPaso(99) As Collection
         Dim iPasoAnterior As Integer
         Dim iPasoActual As Integer
         Dim bMantieneTempSalida() As Boolean
         Dim bMantieneTempEntrada() As Boolean
-        'Dim lTotalCargas As Long
         Dim sCargas As String
-        Dim iFormula As Integer
+        Dim lFormula As Long
         Dim dIniciaFormula As Date
-        'Dim dIniciaPaso As Date
         Dim sTemp() As String
         Dim sMantieneTempSalida As String
         Dim sMantieneTempEntrada As String
@@ -349,22 +319,17 @@ Public Class Form3
         Dim cPasos As Collection
         Dim pPaso As Paso
         Dim tTemperatura As Temperatura
-        'Dim sFormatoAcomodar As String
 
         ColocarForm(Me)
-
-
         sTempEntrada = Split(sVigilarTempEntrada, ",")
         ReDim iTempEntradaAnterior(UBound(sTempEntrada))
         ReDim bMantieneTempEntrada(UBound(sTempEntrada))
         ReDim dTiempoTempEntradaMantenida(UBound(sTempEntrada))
-
-
         sTempSalida = Split(sVigilarTempSalida, ",")
         ReDim iTempSalidaAnterior(UBound(sTempSalida))
         ReDim bMantieneTempSalida(UBound(sTempSalida))
         ReDim dTiempoTempSalidaMantenida(UBound(sTempSalida))
-        sSQL = "SELECT * FROM lecturas where secadora=" & sSecadora & " and fecha between '" & sfechainicio & "' and '" & sfechafin & "' order by fecha"
+        sSQL = "SELECT * FROM lecturas WHERE secadora=" & sSecadora & " AND fecha BETWEEN '" & sfechainicio & "' AND '" & sfechafin & "' ORDER BY fecha"
         lContador = 0
         dTiempoRegistrado = New Date
         TiempoTrabajo = New Date
@@ -376,10 +341,8 @@ Public Class Form3
         sCargas = ""
         sMantieneTempSalida = ""
         sMantieneTempEntrada = ""
-
         iMinTempEntrada = 1024
         iMinTempSalida = 1024
-        'lTotalCargas = 1
         mLector = Consulta(sSQL)
         Do While mLector.Read
             UltimoTiempo = mLector.Item(1)
@@ -398,9 +361,8 @@ Public Class Form3
 
             If bVentiladorTrabajando And bVentiladorTrabajandoAnterior = False Then
                 cID.Add(mLector.Item("id"))
-                iFormula = CInt(mLector.Item(5))
+                lFormula = CInt(mLector.Item(5))
                 dIniciaFormula = UltimoTiempo
-                'dIniciaPaso = UltimoTiempo
                 pPaso.Inicio = UltimoTiempo
                 iPasoAnterior = ObtenerPaso(mLector.Item("display"))
             End If
@@ -409,34 +371,31 @@ Public Class Form3
                     iPasoActual = ObtenerPaso(mLector.Item("display"))
                 End If
                 If iPasoActual <> iPasoAnterior Then
-
-                    'cPasos.Add(vbTab & "Paso: " & iPasoAnterior.ToString.PadLeft(3) & " inicia " & FormatoHora(dIniciaPaso) & " termina " & FormatoHora(UltimoTiempo) & " duracion " & LapsoTiempo(dIniciaPaso, UltimoTiempo))
-                    'dIniciaPaso = UltimoTiempo
-                    pPaso.Numero = iPasoAnterior
-                    pPaso.Duracion = LapsoTiempo(CDate(pPaso.Inicio), TiempoAnterior)
-                    pPaso.Fin = TiempoAnterior
-                    cPasos.Add(pPaso)
-                    pPaso = Nothing
-                    pPaso.Inicio = UltimoTiempo
+                    If TiempoAnterior > CDate("00:00:00") Then
+                        pPaso.Numero = iPasoAnterior
+                        pPaso.Duracion = LapsoTiempo(CDate(pPaso.Inicio), TiempoAnterior)
+                        pPaso.Fin = TiempoAnterior
+                        cPasos.Add(pPaso)
+                        pPaso = Nothing
+                        pPaso.Inicio = UltimoTiempo
+                    Else
+                        iPasoActual = iPasoAnterior
+                    End If
                 End If
             End If
             If bVentiladorTrabajando And bVentiladorTrabajandoAnterior = True Then
-                If iFormula = 0 Then iFormula = CInt(mLector.Item(5))
+                If lFormula = 0 Then lFormula = CInt(mLector.Item(5))
 
                 If (UltimoTiempo - TiempoAnterior).TotalMinutes < 2 Then
                     TiempoTrabajo = TiempoTrabajo + (UltimoTiempo - TiempoAnterior)
                 End If
             End If
             If bVentiladorTrabajandoAnterior = True And bVentiladorTrabajando = False Then
-                'cPasos.Add(vbTab & "Paso: " & iPasoAnterior.ToString.PadLeft(3) & " inicia " & FormatoHora(dIniciaPaso) & " termina " & FormatoHora(UltimoTiempo) & " duracion " & LapsoTiempo(dIniciaPaso, UltimoTiempo))
                 pPaso.Fin = TiempoAnterior
                 pPaso.Duracion = LapsoTiempo(CDate(pPaso.Inicio), TiempoAnterior)
                 pPaso.Numero = iPasoAnterior
                 cPasos.Add(pPaso)
-                lCargas(iFormula) = lCargas(iFormula) + 1
-                sCargas = sCargas & sCarga & vbTab & " Inicia formula: " & iFormula.ToString.PadLeft(3) & " a las " & FormatoHora(dIniciaFormula) & ", termina " & FormatoHora(UltimoTiempo) & " duracion " & LapsoTiempo(dIniciaFormula, UltimoTiempo) & vbCrLf
-                'lTotalCargas = lTotalCargas + 1
-                'iPasoActual = Nothing
+                sCargas = sCargas & sCarga & vbTab & " Inicia formula: " & lFormula.ToString.PadLeft(3) & " a las " & FormatoHora(dIniciaFormula) & ", termina " & FormatoHora(UltimoTiempo) & " duracion " & LapsoTiempo(dIniciaFormula, UltimoTiempo) & vbCrLf
             End If
 
             If mLector.Item(3) > iMaxTempEntrada Then
@@ -459,9 +418,6 @@ Public Class Form3
                 dHoraMinTempSalida = mLector.Item("fecha")
                 dTiempoMinTempSalida = CDate((UltimoTiempo - PrimerTiempo).ToString)
             End If
-
-
-
             For lIter = 0 To UBound(sTempEntrada)
                 If mLector.Item(3) >= Val(sTempEntrada(lIter)) And iTempEntradaAnterior(lIter) < Val(sTempEntrada(lIter)) Then
                     If Not bMantieneTempEntrada(lIter) Then
@@ -516,17 +472,14 @@ Public Class Form3
             bVentiladorTrabajandoAnterior = bVentiladorTrabajando
             TiempoAnterior = UltimoTiempo
             lContador = lContador + 1
-            Debug.Print("-")
         Loop
         mLector.Close()
-
-        'lTotalCargas = 0
         ListBox1.Items.Add("-")
         sTemp = Split(sCargas, vbCrLf)
         For lIter = 0 To UBound(sTemp)
             ListBox1.Items.Add(sTemp(lIter))
             If lIter < cID.Count Then
-                sSQL = "select * from cargas where idlectura=" & cID.Item(lIter + 1) & " order by fecha desc"
+                sSQL = "SELECT * FROM cargas WHERE idlectura=" & cID.Item(lIter + 1) & " ORDER BY fecha DESC"
                 mLector = Consulta(sSQL)
                 If mLector.Read Then
                     ListBox1.Items.Add(vbTab & "Marca: " & mLector.Item("marca") & vbTab & "P.O.: " & mLector.Item("po") & vbTab & "Corte: " & mLector.Item("corte") & vbTab & "Proceso: " & mLector.Item("proceso") & vbTab & "Fase: " & mLector.Item("fase"))
@@ -586,6 +539,7 @@ Public Class Form3
     Private Sub ExportarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportarToolStripMenuItem.Click
         Dim w As IO.StreamWriter
         Dim sLinea As String
+
         SaveFileDialog1.FileName = Replace(Me.Text, ":", "") & ".txt"
         SaveFileDialog1.Filter = "Archivo de texto|*.txt"
         If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.Cancel Then
@@ -601,6 +555,7 @@ Public Class Form3
 
     Private Sub SeleccionarTodoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SeleccionarTodoToolStripMenuItem.Click
         Dim iRenglon As Integer
+
         For iRenglon = 0 To ListBox1.Items.Count - 1
             ListBox1.SetSelected(iRenglon, True)
         Next iRenglon
@@ -614,8 +569,6 @@ Public Class Form3
             sTexto.Append(ListBox1.SelectedItems.Item(iRenglon).ToString)
             sTexto.Append(vbCrLf)
         Next
-
         My.Computer.Clipboard.SetText(sTexto.ToString)
-
     End Sub
 End Class
