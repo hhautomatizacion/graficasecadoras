@@ -17,3 +17,13 @@
 	* Se corrige error que hacia que los datos de los PLC's no se pudieran graficar.
 	* Se agrega set de temperaturas a grafica.
 	* Se corrigen errores menores.
+
+---
+![Secadora 32bits.ico](/Programas/Secadora 32bits.ico)
+---
+![SecadoraChart.ico](/Programas/SecadoraChart.ico)
+---
+![UpgradeReport_Minus.gif](/Programas/_UpgradeReport_Files/UpgradeReport_Minus.gif)
+---
+![UpgradeReport_Plus.gif](/Programas/_UpgradeReport_Files/UpgradeReport_Plus.gif)
+---
