@@ -8,6 +8,8 @@ Module Module1
     Public cDetGrafica As Collection
     Public cEsclavos As Collection
     Public lColorTempEntrada As Integer
+    Public lColorSet As Integer
+    Public lColorValvula As Integer
     Public lColorTempSalida As Integer
     Public lColorCarga As Integer
     Public lColorSecundarioCarga As Integer
@@ -74,10 +76,54 @@ Module Module1
         Public Entrada1 As Boolean
         Public Entrada2 As Boolean
         Public Formula As Integer
+        Public Valv As Integer
         Public Paso As Integer
         Public Tooltip As String
         Public Vacio As Boolean
     End Structure
+
+    Function ObtenerValv(ByVal sDisplay As String) As Long
+        Dim sTemp As String
+        Dim sPaso As String
+        Dim iIter As Integer
+        Dim lPaso As Long
+
+
+        sTemp = ""
+        Try
+            If Len(sDisplay) > 0 Then
+                sTemp = sDisplay
+                If InStr(sTemp, Chr(128)) Then
+                    sDisplay = Mid(sTemp, InStr(sTemp, Chr(128)) + 1)
+                End If
+                If InStr(sTemp, Chr(160)) Then
+                    For iIter = 150 To 159
+                        sTemp = sTemp.Replace(Chr(iIter), "")
+                    Next iIter
+                    For iIter = 161 To 170
+                        sTemp = sTemp.Replace(Chr(iIter), "")
+                    Next iIter
+                End If
+                'sTemp = sTemp.Substring(1, 40)
+                If InStr(sTemp, "Act=") > 0 Then
+                    sPaso = ""
+                    iIter = InStr(sTemp, "Act=") + 4
+                    sPaso = Trim(Mid(sTemp, iIter, 5))
+                    '                    Do
+                    '                    sCaracter = sTemp.Substring(iIter, 1)
+                    '                   If IsNumeric(sCaracter) Then sPaso = sPaso & sCaracter
+                    '                  iIter = iIter + 1
+                    '                 Loop Until sCaracter = "." Or sCaracter = "#" Or iIter >= Len(sTemp)
+                    lPaso = Val(sPaso)
+                End If
+            Else
+                lPaso = 0
+            End If
+        Catch
+            lPaso = -1
+        End Try
+        ObtenerValv = lPaso
+    End Function
 
     Function ObtenerPaso(ByVal sDisplay As String) As Long
         Dim sTemp As String
@@ -101,20 +147,23 @@ Module Module1
                         sTemp = sTemp.Replace(Chr(iIter), "")
                     Next iIter
                 End If
-                sTemp = sTemp.Substring(1, 40)
+                
                 If InStr(sTemp, "Paso #") > 0 Then
                     sPaso = ""
                     iIter = InStr(sTemp, "Paso #") + 6
-                    Do
+                    sPaso = Trim(Mid(sTemp, iIter, 5))
 
-                        sCaracter = sTemp.Substring(iIter, 1)
-                        If IsNumeric(sCaracter) Then sPaso = sPaso & sCaracter
-                        iIter = iIter + 1
-                    Loop Until sCaracter = "L" Or sCaracter = "#" Or iIter >= Len(sTemp)
+                    '                    Do
+                    '                    sCaracter = sTemp.Substring(iIter, 1)
+                    '                   If IsNumeric(sCaracter) Then sPaso = sPaso & sCaracter
+                    '                  iIter = iIter + 1
+                    '                 Loop Until sCaracter = "." Or sCaracter = "#" Or iIter >= Len(sTemp)
                     lPaso = Val(sPaso)
+
                 ElseIf InStr(sTemp, "Linea") > 0 Then
                     sPaso = ""
-                    iIter = InStr(sTemp, "Linea") - 3
+
+                    iIter = InStr(sTemp, "Linea") - 5
                     Do
                         sCaracter = sTemp.Substring(iIter, 1)
                         If IsNumeric(sCaracter) Then sPaso = sPaso & sCaracter
@@ -130,7 +179,6 @@ Module Module1
         End Try
         ObtenerPaso = lPaso
     End Function
-
 
     Sub RealizarConexion()
         mConexion = New MySqlConnection()
@@ -231,25 +279,24 @@ Module Module1
         Dim iColumna As Integer
 
         For iColumna = 0 To DataGrid.Columns.Count - 1
-            SaveSetting("MonitorSecadoras", "Grafica", Forma.Name & "AnchoColumna" & iColumna, DataGrid.Columns.Item(iColumna).Width.ToString)
+            SaveSetting("MonitorSecadoras", "Ventanas", Forma.Name & "AnchoColumna" & iColumna, DataGrid.Columns.Item(iColumna).Width.ToString)
         Next
     End Sub
     Sub CargarAnchoColumnas(ByVal Forma As Form, ByVal DataGrid As DataGridView)
         Dim iColumna As Integer
-
         For iColumna = 0 To DataGrid.Columns.Count - 1
-            DataGrid.Columns.Item(iColumna).Width = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "AnchoColumna" & iColumna.ToString, "100"))
+            DataGrid.Columns.Item(iColumna).Width = Val(GetSetting("MonitorSecadoras", "Ventanas", Forma.Name & "AnchoColumna" & iColumna.ToString, "100"))
         Next
     End Sub
     Sub GuardarPosicion(ByVal Forma As Form)
         If Forma.WindowState = FormWindowState.Minimized Then
         Else
-            SaveSetting("MonitorSecadoras", "Grafica", Forma.Name & "Opacidad", Forma.Opacity.ToString)
-            SaveSetting("MonitorSecadoras", "Grafica", Forma.Name & "Estado", Forma.WindowState.ToString)
-            SaveSetting("MonitorSecadoras", "Grafica", Forma.Name & "Top", Forma.Top)
-            SaveSetting("MonitorSecadoras", "Grafica", Forma.Name & "Left", Forma.Left)
-            SaveSetting("MonitorSecadoras", "Grafica", Forma.Name & "Width", Forma.Width)
-            SaveSetting("MonitorSecadoras", "Grafica", Forma.Name & "Height", Forma.Height)
+            SaveSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Opacidad", Forma.Opacity.ToString)
+            SaveSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Estado", Forma.WindowState.ToString)
+            SaveSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Top", Forma.Top)
+            SaveSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Left", Forma.Left)
+            SaveSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Width", Forma.Width)
+            SaveSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Height", Forma.Height)
         End If
     End Sub
     Sub ColocarForm(ByVal Forma As Form)
@@ -259,21 +306,21 @@ Module Module1
         Dim iHeight As Integer
         Dim sOpacidad As Single
 
-        sOpacidad = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Opacidad", "1"))
-        iTop = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Top", "0"))
-        iLeft = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Left", "0"))
-        iWidth = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Width", "400"))
-        iHeight = Val(GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Height", "300"))
+        sOpacidad = Val(GetSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Opacidad", "1"))
+        iTop = Val(GetSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Top", "0"))
+        iLeft = Val(GetSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Left", "0"))
+        iWidth = Val(GetSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Width", "400"))
+        iHeight = Val(GetSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Height", "300"))
         If iLeft > System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width - iWidth Then iLeft = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width - iWidth
         If iTop > System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height - iHeight Then iTop = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height - iHeight
         If iLeft < 0 Then iLeft = 0
         If iTop < 0 Then iTop = 0
         Forma.Opacity = sOpacidad
-        Forma.Top = iTop
-        Forma.Left = iLeft
-        Forma.Width = iWidth
-        Forma.Height = iHeight
-        If GetSetting("MonitorSecadoras", "Grafica", Forma.Name & "Estado", "Normal") = "Normal" Then
+        If GetSetting("MonitorSecadoras", "Ventanas", Forma.Name & "Estado", "Normal") = "Normal" Then
+            Forma.Top = iTop
+            Forma.Left = iLeft
+            Forma.Width = iWidth
+            Forma.Height = iHeight
         Else
             Forma.WindowState = FormWindowState.Maximized
         End If
@@ -392,6 +439,8 @@ Module Module1
         SaveSetting("MonitorSecadoras", "Grafica", "MinutosActualizar", lMinutosActualizar.ToString)
         SaveSetting("MonitorSecadoras", "Grafica", "ColorEntrada", lColorTempEntrada.ToString)
         SaveSetting("MonitorSecadoras", "Grafica", "ColorSalida", lColorTempSalida.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "ColorValvula", lColorvalvula.ToString)
+        SaveSetting("MonitorSecadoras", "Grafica", "ColorSet", lColorset.ToString)
         SaveSetting("MonitorSecadoras", "Grafica", "ColorCarga", lColorCarga.ToString)
         SaveSetting("MonitorSecadoras", "Grafica", "ColorSecundarioCarga", lColorSecundarioCarga.ToString)
         SaveSetting("MonitorSecadoras", "Grafica", "ColorPaso", lColorPaso.ToString)
@@ -405,9 +454,6 @@ Module Module1
         SaveSetting("MonitorSecadoras", "Grafica", "Separador", sSeparador)
         SaveSetting("MonitorSecadoras", "Grafica", "Server", sServer)
         SaveSetting("MonitorSecadoras", "Grafica", "SecadoraActual", sSecadoraActual)
-        'SaveSetting("MonitorSecadoras", "Grafica", "EsclavoActual", ToolStripStatusLabel11.Tag)
-        SaveSetting("MonitorSecadoras", "Grafica", "VigilarTempEntrada", sVigilarTempEntrada)
-        SaveSetting("MonitorSecadoras", "Grafica", "VigilarTempSalida", sVigilarTempSalida)
         SaveSetting("MonitorSecadoras", "Grafica", "RangoAceptable", lRangoAceptable.ToString)
         SaveSetting("MonitorSecadoras", "Grafica", "MinutosTempSalidaMantentenida", lMinutosTempSalidaMantenida.ToString)
         SaveSetting("MonitorSecadoras", "Grafica", "MinutosTempEntradaMantenida", lMinutosTempEntradaMantenida.ToString)
@@ -419,6 +465,8 @@ Module Module1
         lMinutosActualizar = Val(GetSetting("MonitorSecadoras", "Grafica", "MinutosActualizar", "10"))
         lColorTempEntrada = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorEntrada", "255"))
         lColorTempSalida = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorSalida", "16711680"))
+        lColorSet = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorSet", "16777215"))
+        lColorValvula = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorValvula", "12632256"))
         lColorCarga = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorCarga", "12632256"))
         lColorSecundarioCarga = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorSecundarioCarga", "16777215"))
         lColorPaso = Val(GetSetting("MonitorSecadoras", "Grafica", "ColorPaso", "12632256"))
@@ -430,8 +478,8 @@ Module Module1
         sNombreFuenteG = GetSetting("MonitorSecadoras", "Grafica", "NombreFuenteG", "Verdana")
         lTamanioGrande = Val(GetSetting("MonitorSecadoras", "Grafica", "TamanioGrande", "10"))
         sSeparador = GetSetting("MonitorSecadoras", "Grafica", "Separador", ", ")
-        sVigilarTempEntrada = GetSetting("MonitorSecadoras", "Grafica", "VigilarTempEntrada", "198,480,600")
-        sVigilarTempSalida = GetSetting("MonitorSecadoras", "Grafica", "VigilarTempSalida", "120,140,170,200")
+        sVigilarTempEntrada = GetSetting("MonitorSecadoras", "Grafica", "VigilarTempEntrada", "200,400,600")
+        sVigilarTempSalida = GetSetting("MonitorSecadoras", "Grafica", "VigilarTempSalida", "140,170,200")
         lRangoAceptable = Val(GetSetting("MonitorSecadoras", "Grafica", "RangoAceptable", "5"))
         lMinutosTempSalidaMantenida = Val(GetSetting("MonitorSecadoras", "Grafica", "MinutosTempSalidaMantenida", "5"))
         lMinutosTempEntradaMantenida = Val(GetSetting("MonitorSecadoras", "Grafica", "MinutosTempEntradaMantenida", "5"))

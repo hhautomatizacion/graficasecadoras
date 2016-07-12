@@ -8,14 +8,14 @@
     </CopyProjectUncPath>
     <CopyProjectOption>0</CopyProjectOption>
     <ProjectView>ProjectFiles</ProjectView>
-    <PublishUrlHistory>\\mantenimientocl\MonitorSecadoras\GraficaSecadoras\|\\manttocl\MonitorSecadoras\GraficaSecadoras\|C:\MonitorSecadoras\</PublishUrlHistory>
+    <PublishUrlHistory>\\mttoserver\Descargas\GraficaSecadoras\|\\mantenimientocl\MonitorSecadoras\GraficaSecadoras\|\\manttocl\MonitorSecadoras\GraficaSecadoras\|C:\MonitorSecadoras\</PublishUrlHistory>
     <InstallUrlHistory>\\manttocl\MonitorSecadoras\GraficaSecadoras\</InstallUrlHistory>
     <SupportUrlHistory>
     </SupportUrlHistory>
     <UpdateUrlHistory>\\manttocl\MonitorSecadoras\GraficaSecadoras\|\\manttocl\MonitorSecadoras\</UpdateUrlHistory>
     <BootstrapperUrlHistory>
     </BootstrapperUrlHistory>
-    <ApplicationRevision>68</ApplicationRevision>
+    <ApplicationRevision>70</ApplicationRevision>
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>

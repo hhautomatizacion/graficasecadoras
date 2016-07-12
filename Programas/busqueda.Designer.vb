@@ -256,7 +256,7 @@ Partial Class busqueda
         Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
         Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(70, 22)
+        Me.ToolStripButton1.Size = New System.Drawing.Size(69, 22)
         Me.ToolStripButton1.Text = "Exportar"
         '
         'ToolStripButton2
@@ -265,7 +265,7 @@ Partial Class busqueda
         Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
         Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(67, 22)
+        Me.ToolStripButton2.Size = New System.Drawing.Size(60, 22)
         Me.ToolStripButton2.Text = "Limpiar"
         '
         'ToolStripProgressBar1
@@ -276,7 +276,7 @@ Partial Class busqueda
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(85, 22)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(80, 22)
         Me.ToolStripLabel1.Text = "Encontrados: 0"
         '
         'Timer1

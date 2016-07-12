@@ -7,6 +7,7 @@ Friend Class Form1
     Dim lFormula As Long
     Dim cCarga As Carga
     Dim cCargas As Collection
+    Dim bClickEnParteSuperior As Boolean
 
     Dim lMinutosSinActualizar As Long
 
@@ -93,14 +94,10 @@ Friend Class Form1
         ToolStripStatusLabel3.Text = Now.ToString("yyyy-MM-dd") & " 00:00:00"
         ToolStripStatusLabel1.Text = Now.ToString("yyyy-MM-dd") & " 23:59:59"
         PoblarComboSecadoras()
-        'ToolStripComboBox1.Text = GetSetting("MonitorSecadoras", "Grafica", "SecadoraActual", "10")
-        'ToolStripStatusLabel11.Tag = GetSetting("MonitorSecadoras", "Grafica", "EsclavoActual", "10")
         ActualizarMenuStrip()
         Me.Cursor = Cursors.Arrow
     End Sub
     Sub PreCargaFormulas()
-        ' Autor: emmanuel156gmail.com
-
         Dim drLector As MySql.Data.MySqlClient.MySqlDataReader
         Dim cFormulas As Collection
         Dim iIter As Integer
@@ -126,9 +123,6 @@ Friend Class Form1
         Next iIter
     End Sub
     Sub PoblarComboSecadoras()
-        '   Autor: emmanuel156@gmail.com
-        '   [x] Ordenar secadoras por nombre. (Realizado el 23oct2015 por emmanuel156@gmail.com)
-
         Dim mLector As MySql.Data.MySqlClient.MySqlDataReader
 
         sSQL = "SELECT esclavo,nombre FROM esclavos ORDER BY nombre"
@@ -375,6 +369,8 @@ Friend Class Form1
         Me.Cursor = Cursors.Arrow
         Timer1.Enabled = True
         Chart1.Visible = True
+
+        Chart1.Focus()
     End Sub
 
     Private Sub FechaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FechaToolStripMenuItem.Click
@@ -555,6 +551,9 @@ Friend Class Form1
     Private Sub Chart1_CursorPositionChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataVisualization.Charting.CursorEventArgs) Handles Chart1.CursorPositionChanged
         Dim iPosicion As Integer
         Dim mVentana As Mensaje
+        Dim cCarga As Carga
+
+
 
         If Double.IsNaN(e.NewPosition) Then
         Else
@@ -562,6 +561,22 @@ Friend Class Form1
             If iPosicion >= 0 And iPosicion <= Chart1.Series.Item("Temp1").Points.Count - 1 Then
                 Dim fDetPunto As New Form2
                 Dim mLector As MySql.Data.MySqlClient.MySqlDataReader
+
+                If bClickEnParteSuperior Then
+                    For Each cCarga In cCargas
+                        If iPosicion > cCarga.IdInicio And iPosicion < cCarga.IdFin Then
+
+                            Dim fGrafica As New Form5
+
+                            cGraficas.Add(fGrafica)
+                            fGrafica.Tag = ToolStripStatusLabel11.Tag & sSeparador & cCarga.Inicio & sSeparador & cCarga.Fin & sSeparador & cCarga.Formula
+                            fGrafica.Show()
+
+                            Exit Sub
+                        End If
+                    Next
+                End If
+
                 mVentana.Ventana = Me
                 mVentana.Esclavo = ToolStripStatusLabel11.Tag
                 fDetPunto.Tag = mVentana
@@ -585,13 +600,9 @@ Friend Class Form1
                 fDetPunto.Show()
                 mLector.Close()
             End If
-        End If
+            End If
     End Sub
     Private Sub CopiarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CopiarToolStripMenuItem.Click
-        '   Autor: emmanuel156@gmail.com
-        '
-        '   [x] Usar using en lugar de dim para ahorrar memoria (Realizado el 30oct2015 por emmanuel156@gmail.com)
-
         Using mImagen As New IO.MemoryStream
             Chart1.SaveImage(mImagen, DataVisualization.Charting.ChartImageFormat.Bmp)
             Using bImagen As New Bitmap(mImagen)
@@ -618,7 +629,44 @@ Friend Class Form1
         ToolStripProgressBar1.Value = 0
     End Sub
 
-    Private Sub ToolStripComboBox1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripComboBox1.Click
+
+
+    Private Sub Chart1_MouseWheel(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Chart1.MouseWheel
+        'Probando para zoom con mouse wheel 
+        'Debug.Print(e.Delta)
+
+    End Sub
+
+    Private Sub Chart1_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Chart1.MouseClick
+        bClickEnParteSuperior = False
+        If e.Clicks = 1 Then
+            If e.Button = Windows.Forms.MouseButtons.Left Then
+                If Chart1.ChartAreas(0).AxisY.PixelPositionToValue(e.Y) > 0.95 * Chart1.ChartAreas(0).AxisY.Maximum And Chart1.ChartAreas(0).AxisY.PixelPositionToValue(e.Y) < Chart1.ChartAreas(0).AxisY.Maximum Then
+                    bClickEnParteSuperior = True
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub ColorSetToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ColorSetToolStripMenuItem.Click
+        ColorDialog1.Color = Drawing.ColorTranslator.FromOle(lColorSet)
+        If ColorDialog1.ShowDialog() <> Windows.Forms.DialogResult.Cancel Then
+            lColorSet = Drawing.ColorTranslator.ToOle(ColorDialog1.Color)
+            'Graficar(ToolStripStatusLabel11.Tag, ToolStripStatusLabel3.Text, ToolStripStatusLabel1.Text)
+        End If
+
+    End Sub
+
+    Private Sub ColorValvulaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ColorValvulaToolStripMenuItem.Click
+        ColorDialog1.Color = Drawing.ColorTranslator.FromOle(lColorValvula)
+        If ColorDialog1.ShowDialog() <> Windows.Forms.DialogResult.Cancel Then
+            lColorValvula = Drawing.ColorTranslator.ToOle(ColorDialog1.Color)
+            'Graficar(ToolStripStatusLabel11.Tag, ToolStripStatusLabel3.Text, ToolStripStatusLabel1.Text)
+        End If
+
+    End Sub
+
+    Private Sub ToolStripStatusLabel7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripStatusLabel7.Click
 
     End Sub
 End Class

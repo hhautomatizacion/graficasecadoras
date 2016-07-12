@@ -23,7 +23,7 @@
 	<System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
@@ -55,8 +55,12 @@
         Me.ConfigurarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ColorTempEntradaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ColorTempSalidaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ColorSetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ColorValvulaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator
         Me.ColorCargaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ColorSecundarioCargaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
         Me.FuenteGraficaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.FuenteAnalisisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.EscalaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
@@ -137,8 +141,8 @@
         '
         Me.ToolStripStatusLabel7.Image = CType(resources.GetObject("ToolStripStatusLabel7.Image"), System.Drawing.Image)
         Me.ToolStripStatusLabel7.Name = "ToolStripStatusLabel7"
-        Me.ToolStripStatusLabel7.Size = New System.Drawing.Size(98, 17)
-        Me.ToolStripStatusLabel7.Text = "Temp. Entrada:"
+        Me.ToolStripStatusLabel7.Size = New System.Drawing.Size(65, 17)
+        Me.ToolStripStatusLabel7.Text = "Entrada:"
         '
         'ToolStripStatusLabel6
         '
@@ -150,8 +154,8 @@
         '
         Me.ToolStripStatusLabel9.Image = CType(resources.GetObject("ToolStripStatusLabel9.Image"), System.Drawing.Image)
         Me.ToolStripStatusLabel9.Name = "ToolStripStatusLabel9"
-        Me.ToolStripStatusLabel9.Size = New System.Drawing.Size(88, 17)
-        Me.ToolStripStatusLabel9.Text = "Temp. Salida:"
+        Me.ToolStripStatusLabel9.Size = New System.Drawing.Size(55, 17)
+        Me.ToolStripStatusLabel9.Text = "Salida:"
         '
         'ToolStripStatusLabel8
         '
@@ -162,7 +166,7 @@
         'ToolStripStatusLabel5
         '
         Me.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5"
-        Me.ToolStripStatusLabel5.Size = New System.Drawing.Size(137, 17)
+        Me.ToolStripStatusLabel5.Size = New System.Drawing.Size(139, 17)
         Me.ToolStripStatusLabel5.Spring = True
         '
         'ToolStripProgressBar1
@@ -257,9 +261,9 @@
         '
         'ConfigurarToolStripMenuItem
         '
-        Me.ConfigurarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ColorTempEntradaToolStripMenuItem, Me.ColorTempSalidaToolStripMenuItem, Me.ColorCargaToolStripMenuItem, Me.ColorSecundarioCargaToolStripMenuItem, Me.FuenteGraficaToolStripMenuItem, Me.FuenteAnalisisToolStripMenuItem})
+        Me.ConfigurarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ColorTempEntradaToolStripMenuItem, Me.ColorTempSalidaToolStripMenuItem, Me.ColorSetToolStripMenuItem, Me.ColorValvulaToolStripMenuItem, Me.ToolStripSeparator2, Me.ColorCargaToolStripMenuItem, Me.ColorSecundarioCargaToolStripMenuItem, Me.ToolStripSeparator1, Me.FuenteGraficaToolStripMenuItem, Me.FuenteAnalisisToolStripMenuItem})
         Me.ConfigurarToolStripMenuItem.Name = "ConfigurarToolStripMenuItem"
-        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.ConfigurarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ConfigurarToolStripMenuItem.Text = "Configurar"
         '
         'ColorTempEntradaToolStripMenuItem
@@ -274,6 +278,23 @@
         Me.ColorTempSalidaToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.ColorTempSalidaToolStripMenuItem.Text = "Color Temp. Salida"
         '
+        'ColorSetToolStripMenuItem
+        '
+        Me.ColorSetToolStripMenuItem.Name = "ColorSetToolStripMenuItem"
+        Me.ColorSetToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.ColorSetToolStripMenuItem.Text = "Color Set"
+        '
+        'ColorValvulaToolStripMenuItem
+        '
+        Me.ColorValvulaToolStripMenuItem.Name = "ColorValvulaToolStripMenuItem"
+        Me.ColorValvulaToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.ColorValvulaToolStripMenuItem.Text = "Color Valvula"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(195, 6)
+        '
         'ColorCargaToolStripMenuItem
         '
         Me.ColorCargaToolStripMenuItem.Name = "ColorCargaToolStripMenuItem"
@@ -285,6 +306,11 @@
         Me.ColorSecundarioCargaToolStripMenuItem.Name = "ColorSecundarioCargaToolStripMenuItem"
         Me.ColorSecundarioCargaToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
         Me.ColorSecundarioCargaToolStripMenuItem.Text = "Color Secundario Carga"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(195, 6)
         '
         'FuenteGraficaToolStripMenuItem
         '
@@ -302,7 +328,7 @@
         '
         Me.EscalaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CentigradosToolStripMenuItem, Me.FarenheitToolStripMenuItem})
         Me.EscalaToolStripMenuItem.Name = "EscalaToolStripMenuItem"
-        Me.EscalaToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.EscalaToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.EscalaToolStripMenuItem.Text = "Escala"
         '
         'CentigradosToolStripMenuItem
@@ -321,7 +347,7 @@
         '
         Me.OpacidadToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ToolStripMenuItem4, Me.ToolStripMenuItem5})
         Me.OpacidadToolStripMenuItem.Name = "OpacidadToolStripMenuItem"
-        Me.OpacidadToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.OpacidadToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.OpacidadToolStripMenuItem.Text = "Opacidad"
         '
         'ToolStripMenuItem2
@@ -368,8 +394,8 @@
         '
         'Chart1
         '
-        ChartArea1.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea1)
+        ChartArea2.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea2)
         Me.Chart1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Chart1.Location = New System.Drawing.Point(0, 25)
         Me.Chart1.Name = "Chart1"
@@ -451,5 +477,9 @@
     Friend WithEvents CopiarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ColorCargaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ColorSecundarioCargaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ColorSetToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ColorValvulaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
 #End Region
 End Class

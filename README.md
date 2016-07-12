@@ -19,11 +19,42 @@
 * Tarjeta H&H para secadora challenge
 
 ## Autores
-* pedrohermon
-* emmanuel156
+* <a href="http://www.github.com/pedrohermon">pedrohermon</a> <img src="https://avatars0.githubusercontent.com/u/15159556?v=3" height="32" width="32">
+* <a href="http://www.github.com/emmanuel156">emmanuel156</a> <img src="https://avatars0.githubusercontent.com/u/15036095?v=3" height="32" width="32">
 
-##Comentarios
+## Comentarios
 * Ninguno
+
+## Contenido
+* Carpeta de Diagramas
+	* Diagramas del proyecto
+		* Diagramas electricos
+		* Diagramas de bloques
+		* Dibujos
+* Carpeta de Documentos
+	* Documentos pensados para el usuario final
+		* Manuales de usuario
+		* Manuales de programacion
+* Carpeta de Fotos
+	* Fotos del proyecto antes, durante y despues del desarrollo del mismo
+		* Fotos
+		* Capturas de pantalla
+* Carpeta de Historial
+	* Documentacion del desarrollo del proyecto
+		* Hojas de datos de componentes
+		* Manuales de usuario de componentes
+		* Documentacion de funciones, herramientas
+* Carpeta de Programas
+	* Programas de Computadora, PLC, etc. 
+		* Codigos fuente
+		* Iconos e imagenes usados en los programas
+		* Archivos de configuracion
+		* Programas compilados
+* Carpeta de Pruebas
+	* Pruebas preliminares del proyecto
+		* Programas incompletos, o secciones de programas
+		* Capturas de comunicacion
+		* Modelos de componentes que se hayan probado
 
 ---
 ![001.png](/Fotos/001.png)
@@ -51,8 +82,4 @@
 ![Secadora 32bits.ico](/Programas/Secadora 32bits.ico)
 ---
 ![SecadoraChart.ico](/Programas/SecadoraChart.ico)
----
-![UpgradeReport_Minus.gif](/Programas/_UpgradeReport_Files/UpgradeReport_Minus.gif)
----
-![UpgradeReport_Plus.gif](/Programas/_UpgradeReport_Files/UpgradeReport_Plus.gif)
 ---

@@ -12,7 +12,6 @@
 
 * Capturas de pantalla
 
-
 ---
 ![001.png](/Fotos/001.png)
 ---

@@ -4,7 +4,7 @@
   <description asmv2:iconFile="SecadoraChart.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="GraficaSecadoras" version="1.0.5787.23495" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="GraficaSecadoras" version="1.0.6037.23557" language="neutral" processorArchitecture="x86" />
     <commandLine file="GraficaSecadoras.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -28,14 +28,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GraficaSecadoras.exe" size="286720">
-      <assemblyIdentity name="GraficaSecadoras" version="1.0.5787.23495" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GraficaSecadoras.exe" size="299008">
+      <assemblyIdentity name="GraficaSecadoras" version="1.0.6037.23557" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>xJT2NIeGbqre0ldexEkZFIotA9E=</dsig:DigestValue>
+        <dsig:DigestValue>rYTvEosXoE+9hvxUCYBnoU7gVbM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

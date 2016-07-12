@@ -13,4 +13,3 @@
 * Diagramas de bloques
 
 * Dibujos
-

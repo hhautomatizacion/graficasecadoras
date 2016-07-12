@@ -1,9 +1,30 @@
 Public Class Form5
     Dim cPasos As Collection
     Dim sComentario As String
+    Dim bValvVisible As Boolean
+    Dim bTemp1Visible As Boolean
+    Dim bTemp2Visible As Boolean
+    Dim bSet1Visible As Boolean
+    Dim bSet2Visible As Boolean
 
     Private Sub Form5_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        GuardarPosicion(Me)
+        'GuardarPosicion(Me)
+        If Me.WindowState = FormWindowState.Minimized Then
+        Else
+            SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Opacidad", Me.Opacity.ToString)
+            SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Estado", Me.WindowState.ToString)
+            SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Top", Me.Top)
+            SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Left", Me.Left)
+            SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Width", Me.Width)
+            SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Height", Me.Height)
+        End If
+
+        SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Temp1Visible", -bTemp1Visible)
+        SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Temp2Visible", -bTemp2Visible)
+        SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Set1Visible", -bSet1Visible)
+        SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Set2Visible", -bSet2Visible)
+        SaveSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "ValvVisible", -bValvVisible)
+
     End Sub
     Private Sub ActualizarMenuStrip()
         Try
@@ -35,14 +56,24 @@ Public Class Form5
                     ToolStripMenuItem5.Checked = False
             End Select
         Catch ex As Exception
+
         End Try
+
+        TempEntradaToolStripMenuItem.Checked = bTemp1Visible
+        TempSalidaToolStripMenuItem.Checked = bTemp2Visible
+        SetEntradaToolStripMenuItem.Checked = bSet1Visible
+        SetSalidaToolStripMenuItem.Checked = bSet2Visible
+        PosicionValvToolStripMenuItem.Checked = bValvVisible
     End Sub
     Private Sub Form5_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim sTemp() As String
         Dim mLector As MySql.Data.MySqlClient.MySqlDataReader
+        Dim iTop As Integer
+        Dim iLeft As Integer
+        Dim iWidth As Integer
+        Dim iHeight As Integer
+        Dim sOpacidad As Single
 
-        cPasos = New Collection
-        ColocarForm(Me)
         sTemp = Split(Me.Tag.ToString, sSeparador)
         mLector = Consulta("SELECT nombre FROM esclavos WHERE esclavo=" & sTemp(0))
         If mLector.Read Then
@@ -50,6 +81,38 @@ Public Class Form5
             ToolStripStatusLabel11.Tag = sTemp(0)
         End If
         mLector.Close()
+
+
+        sOpacidad = Val(GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Opacidad", "1"))
+        iTop = Val(GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Top", "0"))
+        iLeft = Val(GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Left", "0"))
+        iWidth = Val(GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Width", "800"))
+        iHeight = Val(GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Height", "300"))
+        If iLeft > System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width - iWidth Then iLeft = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width - iWidth
+        If iTop > System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height - iHeight Then iTop = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height - iHeight
+        If iLeft < 0 Then iLeft = 0
+        If iTop < 0 Then iTop = 0
+        Me.Opacity = sOpacidad
+        If GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Estado", "Normal") = "Normal" Then
+            Me.Top = iTop
+            Me.Left = iLeft
+            Me.Width = iWidth
+            Me.Height = iHeight
+        Else
+            Me.WindowState = FormWindowState.Maximized
+        End If
+
+
+
+        cPasos = New Collection
+        'ColocarForm(Me)
+
+        bTemp1Visible = -Val(GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Temp1Visible", "1"))
+        bTemp2Visible = -Val(GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Temp2Visible", "1"))
+        bSet1Visible = -Val(GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Set1Visible", "1"))
+        bSet2Visible = -Val(GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "Set2Visible", "1"))
+        bValvVisible = -Val(GetSetting("MonitorSecadoras", "Grafica" & ToolStripStatusLabel11.Text, "ValvVisible", "1"))
+
         ToolStripStatusLabel3.Text = sTemp(1)
         ToolStripStatusLabel1.Text = sTemp(2)
         ToolStripStatusLabel13.Text = sTemp(3)
@@ -70,37 +133,29 @@ Public Class Form5
             Chart1.ChartAreas(0).AxisX.ScaleView.Zoomable = True
             Chart1.ChartAreas(0).AxisX.ScrollBar.IsPositionedInside = True
 
-            ' probando
+
             Chart1.Series.Add("Set1")
             Chart1.Series.Add("Set2")
-
+            Chart1.Series.Add("Valv")
             Chart1.Series.Add("Temp1")
             Chart1.Series.Add("Temp2")
 
             Chart1.Series.Item("Temp1").ChartType = DataVisualization.Charting.SeriesChartType.Line
             Chart1.Series.Item("Temp2").ChartType = DataVisualization.Charting.SeriesChartType.Line
-
-            'probando
             Chart1.Series.Item("Set1").ChartType = DataVisualization.Charting.SeriesChartType.Range
             Chart1.Series.Item("Set2").ChartType = DataVisualization.Charting.SeriesChartType.Range
+            Chart1.Series.Item("Valv").ChartType = DataVisualization.Charting.SeriesChartType.Line
 
             Chart1.Series.Item("Temp1").BorderWidth = 3
             Chart1.Series.Item("Temp2").BorderWidth = 3
+            Chart1.Series.Item("Valv").BorderWidth = 3
+
+
             Chart1.Series.Item("Temp1").Color = Drawing.ColorTranslator.FromOle(lColorTempEntrada)
             Chart1.Series.Item("Temp2").Color = Drawing.ColorTranslator.FromOle(lColorTempSalida)
-
-            'probando
-            Chart1.Series.Item("Set1").Color = Color.White
-            Chart1.Series.Item("Set2").Color = Color.White
-            'Chart1.Series.Item("Set1").BorderWidth = 0
-            'Chart1.Series.Item("Set2").BorderWidth = 0
-            'Chart1.Series.Item("Set1").Color = Drawing.ColorTranslator.FromOle(lColorTempEntrada)
-            'Chart1.Series.Item("Set2").Color = Drawing.ColorTranslator.FromOle(lColorTempSalida)
-            'Chart1.Series.Item("Set1").BackSecondaryColor = Color.White
-            'Chart1.Series.Item("Set2").BackSecondaryColor = Color.White
-            'Chart1.Series.Item("Set1").BackGradientStyle = DataVisualization.Charting.GradientStyle.LeftRight
-            'Chart1.Series.Item("Set2").BackGradientStyle = DataVisualization.Charting.GradientStyle.LeftRight
-
+            Chart1.Series.Item("Valv").Color = Drawing.ColorTranslator.FromOle(lColorValvula)
+            Chart1.Series.Item("Set1").Color = Drawing.ColorTranslator.FromOle(lColorset)
+            Chart1.Series.Item("Set2").Color = Drawing.ColorTranslator.FromOle(lColorset)
 
             Chart1.Titles.Add("Secadora " & ToolStripStatusLabel11.Text)
             Chart1.Titles.Item(0).Font = New Font(sNombreFuenteP, lTamanioPequenio)
@@ -168,6 +223,7 @@ Public Class Form5
                         Punto.Entrada2 = mLector.Item("entrada2")
                         Punto.Hora = (CDate(mLector.Item("fecha")))
                         lPasoTemp = ObtenerPaso(mLector.Item("display"))
+                        Punto.Valv = ObtenerValv(mLector.Item("display"))
                         If lPasoTemp <> 0 Then
                             lPaso = lPasoTemp
                         End If
@@ -195,7 +251,7 @@ Public Class Form5
                             lPasoAnterior = lPaso
                         End If
                     Catch
-                        Debug.Print("Error")
+
                     End Try
                     m1 = Math.Abs(Pendiente(Punto.Temp1, lTemp1Ant, Punto.Hora, dHoraAnt))
                     m2 = Math.Abs(Pendiente(Punto.Temp2, lTemp2Ant, Punto.Hora, dHoraAnt))
@@ -238,30 +294,32 @@ Public Class Form5
         If Punto.Vacio Then
             Chart1.Series.Item("Temp1").Points.AddY(0)
             Chart1.Series.Item("Temp2").Points.AddY(0)
-
-            'probando
             Chart1.Series.Item("Set1").Points.AddY(0)
             Chart1.Series.Item("Set2").Points.AddY(0)
+            Chart1.Series.Item("Valv").Points.AddY(0)
 
             Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1).AxisLabel = Punto.Hora.ToString("HH:mm:ss")
             Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).AxisLabel = Punto.Hora.ToString("HH:mm:ss")
-
-            'probando
             Chart1.Series.Item("Set1").Points.Item(Chart1.Series.Item("Set2").Points.Count - 1).AxisLabel = Punto.Hora.ToString("HH:mm:ss")
             Chart1.Series.Item("Set2").Points.Item(Chart1.Series.Item("Set2").Points.Count - 1).AxisLabel = Punto.Hora.ToString("HH:mm:ss")
+            Chart1.Series.Item("Valv").Points.Item(Chart1.Series.Item("Valv").Points.Count - 1).AxisLabel = Punto.Hora.ToString("HH:mm:ss")
 
             Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1).IsEmpty = True
             Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).IsEmpty = True
-
-            'probando
             Chart1.Series.Item("Set1").Points.Item(Chart1.Series.Item("Set2").Points.Count - 1).IsEmpty = True
             Chart1.Series.Item("Set2").Points.Item(Chart1.Series.Item("Set2").Points.Count - 1).IsEmpty = True
-
+            Chart1.Series.Item("Valv").Points.Item(Chart1.Series.Item("Valv").Points.Count - 1).IsEmpty = True
         Else
             Chart1.Series.Item("Temp1").Points.AddXY(Punto.Hora.ToString("HH:mm:ss"), Punto.Temp1)
             Chart1.Series.Item("Temp2").Points.AddXY(Punto.Hora.ToString("HH:mm:ss"), Punto.Temp2)
 
-            'probando
+            'quitar este if
+            If Punto.Valv < 4000 Then
+                Chart1.Series.Item("Valv").Points.AddXY(Punto.Hora.ToString("HH:mm:ss"), Punto.Valv / 10)
+            Else
+                Chart1.Series.Item("Valv").Points.AddXY(Punto.Hora.ToString("HH:mm:ss"), 0)
+            End If
+
             If cFormulasTempEntrada.Contains(Punto.Formula.ToString & "," & Punto.Paso.ToString) Then
                 iSet = Escala(Val(cFormulasTempEntrada(Punto.Formula.ToString & "," & Punto.Paso.ToString)))
                 iLimSup = Escala(Val(cFormulasTempEntrada(Punto.Formula.ToString & "," & Punto.Paso.ToString)) + lRangoAceptable)
@@ -291,34 +349,35 @@ Public Class Form5
             Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).Tag = Punto.Id
             Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1).ToolTip = Punto.Tooltip
             Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).ToolTip = Punto.Tooltip
+            Chart1.Series.Item("Valv").Points.Item(Chart1.Series.Item("Valv").Points.Count - 1).ToolTip = Punto.Tooltip
             End If
             If Len(Punto.Etiqueta1) Then
-            Using aAnotacionTemp1 As New System.Windows.Forms.DataVisualization.Charting.CalloutAnnotation
-                aAnotacionTemp1.Text = Punto.Etiqueta1
-                aAnotacionTemp1.Alignment = ContentAlignment.BottomCenter
-                aAnotacionTemp1.AnchorAlignment = ContentAlignment.BottomCenter
-                aAnotacionTemp1.LineWidth = 1
-                aAnotacionTemp1.CalloutStyle = DataVisualization.Charting.CalloutStyle.SimpleLine
-                aAnotacionTemp1.AllowSelecting = False
-                aAnotacionTemp1.ToolTip = Punto.Tooltip
-                aAnotacionTemp1.AnchorDataPoint = Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1)
-                aAnotacionTemp1.Font = New Font(sNombreFuenteP, lTamanioPequenio)
-                Chart1.Annotations.Add(aAnotacionTemp1)
-            End Using
+                Using aAnotacionTemp1 As New System.Windows.Forms.DataVisualization.Charting.CalloutAnnotation
+                    aAnotacionTemp1.Text = Punto.Etiqueta1
+                    aAnotacionTemp1.Alignment = ContentAlignment.BottomCenter
+                    aAnotacionTemp1.AnchorAlignment = ContentAlignment.BottomCenter
+                    aAnotacionTemp1.LineWidth = 1
+                    aAnotacionTemp1.CalloutStyle = DataVisualization.Charting.CalloutStyle.SimpleLine
+                    aAnotacionTemp1.AllowSelecting = False
+                    aAnotacionTemp1.ToolTip = Punto.Tooltip
+                    aAnotacionTemp1.AnchorDataPoint = Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1)
+                    aAnotacionTemp1.Font = New Font(sNombreFuenteP, lTamanioPequenio)
+                    Chart1.Annotations.Add(aAnotacionTemp1)
+                End Using
             End If
             If Len(Punto.Etiqueta2) Then
-            Using aAnotacionTemp2 As New System.Windows.Forms.DataVisualization.Charting.CalloutAnnotation
-                aAnotacionTemp2.Text = Punto.Etiqueta2
-                aAnotacionTemp2.Alignment = ContentAlignment.BottomCenter
-                aAnotacionTemp2.AnchorAlignment = ContentAlignment.BottomCenter
-                aAnotacionTemp2.LineWidth = 1
-                aAnotacionTemp2.CalloutStyle = DataVisualization.Charting.CalloutStyle.SimpleLine
-                aAnotacionTemp2.AllowSelecting = False
-                aAnotacionTemp2.ToolTip = Punto.Tooltip
-                aAnotacionTemp2.AnchorDataPoint = Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1)
-                aAnotacionTemp2.Font = New Font(sNombreFuenteP, lTamanioPequenio)
-                Chart1.Annotations.Add(aAnotacionTemp2)
-            End Using
+                Using aAnotacionTemp2 As New System.Windows.Forms.DataVisualization.Charting.CalloutAnnotation
+                    aAnotacionTemp2.Text = Punto.Etiqueta2
+                    aAnotacionTemp2.Alignment = ContentAlignment.BottomCenter
+                    aAnotacionTemp2.AnchorAlignment = ContentAlignment.BottomCenter
+                    aAnotacionTemp2.LineWidth = 1
+                    aAnotacionTemp2.CalloutStyle = DataVisualization.Charting.CalloutStyle.SimpleLine
+                    aAnotacionTemp2.AllowSelecting = False
+                    aAnotacionTemp2.ToolTip = Punto.Tooltip
+                    aAnotacionTemp2.AnchorDataPoint = Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1)
+                    aAnotacionTemp2.Font = New Font(sNombreFuenteP, lTamanioPequenio)
+                    Chart1.Annotations.Add(aAnotacionTemp2)
+                End Using
             End If
     End Sub
 
@@ -346,6 +405,11 @@ Public Class Form5
                 Chart1.ChartAreas.Item(0).AxisX.StripLines.Add(slPaso)
             End Using
         Next pPaso
+
+        Chart1.Series.Item("Temp1").Enabled = bTemp1Visible
+        Chart1.Series.Item("Temp2").Enabled = bTemp2Visible
+        Chart1.Series.Item("Valv").Enabled = bValvVisible
+
         ToolStripStatusLabel6.BackColor = Drawing.ColorTranslator.FromOle(lColorTempEntrada)
         ToolStripStatusLabel8.BackColor = Drawing.ColorTranslator.FromOle(lColorTempSalida)
         Chart1.Visible = True
@@ -523,5 +587,44 @@ Public Class Form5
 
     Private Sub Chart1_PostPaint(ByVal sender As Object, ByVal e As System.Windows.Forms.DataVisualization.Charting.ChartPaintEventArgs) Handles Chart1.PostPaint
         ToolStripProgressBar1.Value = 0
+    End Sub
+
+    Private Sub TempSallidaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+    End Sub
+
+    Private Sub PosicionValvToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PosicionValvToolStripMenuItem.Click
+        bValvVisible = Not bValvVisible
+        Chart1.Series.Item("Valv").Enabled = bValvVisible
+        ActualizarMenuStrip()
+    End Sub
+
+    Private Sub OpacidadToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpacidadToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub TempEntradaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TempEntradaToolStripMenuItem.Click
+        bTemp1Visible = Not bTemp1Visible
+        Chart1.Series.Item("Temp1").Enabled = bTemp1Visible
+        ActualizarMenuStrip()
+    End Sub
+
+    Private Sub TempSalidaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TempSalidaToolStripMenuItem.Click
+        bTemp2Visible = Not bTemp2Visible
+        Chart1.Series.Item("Temp2").Enabled = bTemp2Visible
+        ActualizarMenuStrip()
+
+    End Sub
+
+    Private Sub SetEntradaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SetEntradaToolStripMenuItem.Click
+        bSet1Visible = Not bSet1Visible
+        Chart1.Series.Item("Set1").Enabled = bSet1Visible
+        ActualizarMenuStrip()
+    End Sub
+
+    Private Sub SetSalidaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SetSalidaToolStripMenuItem.Click
+        bSet2Visible = Not bSet2Visible
+        Chart1.Series.Item("Set2").Enabled = bSet2Visible
+        ActualizarMenuStrip()
     End Sub
 End Class

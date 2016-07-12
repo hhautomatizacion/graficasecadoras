@@ -208,9 +208,6 @@
     </EmbeddedResource>
     <None Include="Grafica_secadoras_TemporaryKey.pfx" />
     <BaseApplicationManifest Include="My Project\app.manifest" />
-    <None Include="_UpgradeReport.htm">
-      <SubType>Preview</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
