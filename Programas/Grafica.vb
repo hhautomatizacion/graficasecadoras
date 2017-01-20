@@ -112,12 +112,20 @@ Friend Class Form1
             cFormulas.Add(Val(drLector.Item("formula")))
         Loop
         drLector.Close()
+        lMaximoGrafica = 0
         For Each iIter In cFormulas
             sSQL = "SELECT formula,paso,temp1,temp2 FROM formulas WHERE formula=" & iIter.ToString & " ORDER BY paso"
             drLector = Consulta(sSQL)
             Do While drLector.Read
                 cFormulasTempEntrada.Add(Val(drLector.Item("temp1")), drLector.Item("formula") & "," & drLector.Item("paso"))
                 cFormulasTempSalida.Add(Val(drLector.Item("temp2")), drLector.Item("formula") & "," & drLector.Item("paso"))
+                If Val(drLector.Item("temp1")) > lMaximoGrafica Then
+                    lMaximoGrafica = Val(drLector.Item("temp1"))
+                End If
+                If Val(drLector.Item("temp2")) > lMaximoGrafica Then
+                    lMaximoGrafica = Val(drLector.Item("temp2"))
+                End If
+
             Loop
             drLector.Close()
         Next iIter
@@ -161,6 +169,8 @@ Friend Class Form1
             Chart1.Series.Item("Temp2").MarkerStyle = DataVisualization.Charting.MarkerStyle.None
             Chart1.Series.Item("Temp1").BorderWidth = 3
             Chart1.Series.Item("Temp2").BorderWidth = 3
+
+
             Chart1.Series.Item("Temp1").XValueType = DataVisualization.Charting.ChartValueType.DateTime
             Chart1.Series.Item("Temp2").XValueType = DataVisualization.Charting.ChartValueType.DateTime
             Chart1.Series.Item("Temp1").IsXValueIndexed = True
@@ -173,16 +183,32 @@ Friend Class Form1
             Chart1.Titles.Item(1).Font = New Font(sNombreFuenteP, lTamanioPequenio)
             Chart1.Titles.Item(1).Docking = DataVisualization.Charting.Docking.Bottom
             Chart1.ChartAreas(0).AxisY.TitleFont = New Font(sNombreFuenteP, lTamanioPequenio)
+
+
             If bEscalaFarenheit Then
                 Chart1.ChartAreas(0).AxisY.Title = "Temperatura °F"
+                Chart1.ChartAreas(0).AxisY.Maximum = lMaximoGrafica + (4 * lRangoAceptable)
             Else
                 Chart1.ChartAreas(0).AxisY.Title = "Temperatura °C"
+                Chart1.ChartAreas(0).AxisY.Maximum = Escala(lMaximoGrafica + (4 * lRangoAceptable))
             End If
             Chart1.ChartAreas(0).AxisY.LabelStyle.Font = New Font(sNombreFuenteP, lTamanioPequenio)
             Chart1.ChartAreas(0).AxisX.LabelStyle.Font = New Font(sNombreFuenteP, lTamanioPequenio)
-            Chart1.ChartAreas(0).AxisX.LabelStyle.Format = "HH:mm:ss"
+            Chart1.ChartAreas(0).AxisX.LabelStyle.Format = "HH:mm"
+
             Timer1.Enabled = False
             Me.Cursor = Cursors.WaitCursor
+            Dim lMinutosDiferencia As Long
+            Dim lMinuto As Long
+            lMinutosDiferencia = DateDiff(DateInterval.Minute, CDate(sFechaInicio), CDate(sFechaFin))
+            ToolStripProgressBar1.Maximum = lMinutosDiferencia
+            For lMinuto = 0 To lMinutosDiferencia
+                Chart1.Series.Item("Temp1").Points.AddXY(DateAdd(DateInterval.Minute, lMinuto, CDate(sFechaInicio)), 0)
+                Chart1.Series.Item("Temp2").Points.AddXY(DateAdd(DateInterval.Minute, lMinuto, CDate(sFechaInicio)), 0)
+                Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1).IsEmpty = True
+                Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).IsEmpty = True
+            Next
+
             ToolStripComboBox2.Items.Clear()
             BackgroundWorker1.RunWorkerAsync(lSecadora & sSeparador & sFechaInicio & sSeparador & sFechaFin)
         End If
@@ -197,6 +223,7 @@ Friend Class Form1
         Dim sSecadora As String
         Dim sFechaInicio As String
         Dim sFechaFin As String
+        'Dim lFechaInicio As Long
         Dim sTemp() As String
         Dim bVentiladorTrabajando As Boolean
         Dim bQuemadorTrabajando As Boolean
@@ -216,105 +243,114 @@ Friend Class Form1
         sFechaFin = sTemp(2)
         iContador = 0
         iCargas = 0
+        lMinuto = 0
         lMinutosDiferencia = DateDiff(DateInterval.Minute, CDate(sFechaInicio), CDate(sFechaFin))
         If lMinutosDiferencia > 0 Then
-            For lMinuto = 0 To lMinutosDiferencia
-                Punto = Nothing
-                Punto.Vacio = True
-                sSQL = "SELECT id,fecha,temp1,temp2,formula,display,entrada1,entrada2 FROM lecturas WHERE secadora=" & sSecadora & " AND fecha >= DATE_ADD('" & sFechaInicio & "',INTERVAL " & lMinuto & " MINUTE) AND fecha < DATE_ADD('" & sFechaInicio & "',INTERVAL " & lMinuto + 1 & " MINUTE)"
-                mLector = Consulta(sSQL)
-                Do While mLector.Read
-                    Try
-                        Punto.Id = mLector.Item("id")
-                        Punto.Temp1 = Escala(mLector.Item("temp1"))
-                        Punto.Temp2 = Escala(mLector.Item("temp2"))
-                        Punto.Hora = CDate(mLector.Item("fecha"))
-                        Punto.Etiqueta1 = ""
-                        Punto.Etiqueta2 = ""
-                        Punto.Vacio = False
-                        Punto.Entrada1 = mLector.Item("entrada1")
-                        Punto.Entrada2 = mLector.Item("entrada2")
-                        bVentiladorTrabajando = Punto.Entrada1
-                        bQuemadorTrabajando = Punto.Entrada2
-                        Punto.Tooltip = "Hora:" & vbTab & (CDate(mLector.Item("fecha"))).ToString("HH:mm:ss") & vbCrLf & "Formula:" & vbTab & mLector.Item("formula").ToString & vbCrLf & "Temp entrada:" & vbTab & ValToTemp(mLector.Item("temp1")) & vbCrLf & "Temp salida:" & vbTab & ValToTemp(mLector.Item("temp2")) & vbCrLf & "Display:" & vbTab & mLector.Item("display") & vbCrLf & "Ventilador:" & vbTab & BoolToOnOff(mLector.Item("entrada1")) & vbCrLf & "Quemador:" & vbTab & BoolToOnOff(mLector.Item("entrada2"))
-                        If bVentiladorTrabajando = True And bVentiladorTrabajandoAnterior = False Then
-                            cCarga.Inicio = CDate(mLector.Item("fecha")).ToString("yyyy-MM-dd HH:mm:ss")
-                            cCarga.IdInicio = iContador
+            'For lMinuto = 0 To lMinutosDiferencia
+            Punto = Nothing
+            Punto.Vacio = True
+            sSQL = "SELECT id,fecha,temp1,temp2,formula,display,entrada1,entrada2 FROM lecturas WHERE secadora=" & sSecadora & " AND fecha >= '" & sFechaInicio & "' AND fecha < '" & sFechaFin & "' GROUP BY (TO_SECONDS(fecha) DIV 60)"
+            mLector = Consulta(sSQL)
+            Do While mLector.Read
+                Try
+                    Punto.Id = mLector.Item("id")
+                    Punto.Item = DateDiff(DateInterval.Minute, CDate(sFechaInicio), CDate(mLector.Item("fecha")))
+                    Punto.Temp1 = Escala(mLector.Item("temp1"))
+                    Punto.Temp2 = Escala(mLector.Item("temp2"))
+                    Punto.Hora = CDate(mLector.Item("fecha"))
+                    Punto.Etiqueta1 = ""
+                    Punto.Etiqueta2 = ""
+                    Punto.Vacio = False
+                    Punto.Entrada1 = mLector.Item("entrada1")
+                    Punto.Entrada2 = mLector.Item("entrada2")
+                    bVentiladorTrabajando = Punto.Entrada1
+                    bQuemadorTrabajando = Punto.Entrada2
+                    Punto.Tooltip = "Hora:" & vbTab & (CDate(mLector.Item("fecha"))).ToString("HH:mm:ss") & vbCrLf & "Formula:" & vbTab & mLector.Item("formula").ToString & vbCrLf & "Temp entrada:" & vbTab & ValToTemp(mLector.Item("temp1")) & vbCrLf & "Temp salida:" & vbTab & ValToTemp(mLector.Item("temp2")) & vbCrLf & "Display:" & vbTab & mLector.Item("display") & vbCrLf & "Ventilador:" & vbTab & BoolToOnOff(mLector.Item("entrada1")) & vbCrLf & "Quemador:" & vbTab & BoolToOnOff(mLector.Item("entrada2"))
+                    If bVentiladorTrabajando = True And bVentiladorTrabajandoAnterior = False Then
+                        cCarga.Inicio = CDate(mLector.Item("fecha")).ToString("yyyy-MM-dd HH:mm:ss")
+                        cCarga.IdInicio = Punto.Item
+                        lFormula = mLector.Item("formula")
+                        cCarga.Formula = lFormula
+                    End If
+
+                    If bVentiladorTrabajando Then
+                        If lFormula = 0 Then
                             lFormula = mLector.Item("formula")
                             cCarga.Formula = lFormula
                         End If
 
-                        If bVentiladorTrabajando Then
-                            If lFormula = 0 Then
-                                lFormula = mLector.Item("formula")
-                                cCarga.Formula = lFormula
-                            End If
-
-                        End If
-                        If bVentiladorTrabajando = False And bVentiladorTrabajandoAnterior = True Then
-                            iCargas = iCargas + 1
-                            cCarga.Fin = CDate(mLector.Item("fecha")).ToString("yyyy-MM-dd HH:mm:ss")
-                            cCarga.Duracion = LapsoTiempo(CDate(cCarga.Inicio), CDate(cCarga.Fin))
-                            cCarga.IdFin = iContador
-                            cCarga.Id = iCargas
-                            cCargas.Add(cCarga)
-                        End If
-                        bVentiladorTrabajandoAnterior = bVentiladorTrabajando
-                        lFormulaAnterior = lFormula
-                    Catch
-                    End Try
-                    m1 = Math.Abs(Pendiente(Punto.Temp1, lTemp1Ant, Punto.Hora, dHoraAnt))
-                    m2 = Math.Abs(Pendiente(Punto.Temp2, lTemp2Ant, Punto.Hora, dHoraAnt))
-                    If m1 <> 0 Or m2 <> 0 Then
-                        If m1 > 3 Then
-                            Punto.Etiqueta1 = "Cambio temp" & vbCrLf & Math.Abs(Punto.Temp1 - lTemp1Ant) & Unidades() & " en " & (Punto.Hora - dHoraAnt).TotalSeconds & " seg"
-                        End If
-                        If m2 > 3 Then
-                            Punto.Etiqueta2 = "Cambio temp" & vbCrLf & Math.Abs(Punto.Temp2 - lTemp2Ant) & Unidades() & " en " & (Punto.Hora - dHoraAnt).TotalSeconds & " seg"
-                        End If
-                        m1 = 0
-                        m2 = 0
                     End If
-                    lTemp1Ant = Punto.Temp1
-                    lTemp2Ant = Punto.Temp2
-                    dHoraAnt = Punto.Hora
-                    iContador = iContador + 1
-                    BackgroundWorker1.ReportProgress((lMinuto / lMinutosDiferencia) * 100, Punto)
-                Loop
-                mLector.Close()
-                If Punto.Vacio Then
-                    iContador = iContador + 1
-                    Punto.Hora = CDate(DateAdd(DateInterval.Minute, lMinuto, CDate(sFechaInicio)))
-                    BackgroundWorker1.ReportProgress((lMinuto / lMinutosDiferencia) * 100, Punto)
+                    If bVentiladorTrabajando = False And bVentiladorTrabajandoAnterior = True Then
+                        iCargas = iCargas + 1
+                        cCarga.Fin = CDate(mLector.Item("fecha")).ToString("yyyy-MM-dd HH:mm:ss")
+                        cCarga.Duracion = LapsoTiempo(CDate(cCarga.Inicio), CDate(cCarga.Fin))
+                        cCarga.IdFin = Punto.Item
+                        cCarga.Id = iCargas
+                        cCargas.Add(cCarga)
+                    End If
+                    bVentiladorTrabajandoAnterior = bVentiladorTrabajando
+                    lFormulaAnterior = lFormula
+                Catch
+                End Try
+                m1 = Math.Abs(Pendiente(Punto.Temp1, lTemp1Ant, Punto.Hora, dHoraAnt))
+                m2 = Math.Abs(Pendiente(Punto.Temp2, lTemp2Ant, Punto.Hora, dHoraAnt))
+                If m1 <> 0 Or m2 <> 0 Then
+                    If m1 > 3 Then
+                        Punto.Etiqueta1 = "Cambio temp" & vbCrLf & Math.Abs(Punto.Temp1 - lTemp1Ant) & Unidades() & " en " & (Punto.Hora - dHoraAnt).TotalSeconds & " seg"
+                    End If
+                    If m2 > 3 Then
+                        Punto.Etiqueta2 = "Cambio temp" & vbCrLf & Math.Abs(Punto.Temp2 - lTemp2Ant) & Unidades() & " en " & (Punto.Hora - dHoraAnt).TotalSeconds & " seg"
+                    End If
+                    m1 = 0
+                    m2 = 0
                 End If
-            Next lMinuto
+                lTemp1Ant = Punto.Temp1
+                lTemp2Ant = Punto.Temp2
+                dHoraAnt = Punto.Hora
+                iContador = iContador + 1
+                BackgroundWorker1.ReportProgress(Punto.Item, Punto)
+                lMinuto = lMinuto + 1
+            Loop
+            mLector.Close()
+            'If Punto.Vacio Then
+            'iContador = iContador + 1
+            'Punto.Hora = CDate(DateAdd(DateInterval.Minute, lMinuto, CDate(sFechaInicio)))
+            'BackgroundWorker1.ReportProgress((lMinuto / lMinutosDiferencia) * 100, Punto)
+            'End If
+            'Next lMinuto
         End If
     End Sub
 
     Private Sub BackgroundWorker1_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
         Dim Punto As PuntoGrafica
 
-        If e.ProgressPercentage <= 100 Then
+        'Debug.Print(e.ProgressPercentage & "/" & ToolStripProgressBar1.Maximum)
+        If e.ProgressPercentage <= ToolStripProgressBar1.Maximum Then
+
             ToolStripProgressBar1.Value = e.ProgressPercentage
         End If
         Punto = e.UserState
-        If Punto.Vacio Then
-            Chart1.Series.Item("Temp1").Points.AddXY(Punto.Hora, 0)
-            Chart1.Series.Item("Temp2").Points.AddXY(Punto.Hora, 0)
-            Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1).IsEmpty = True
-            Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).IsEmpty = True
-        Else
-            Chart1.Series.Item("Temp1").Points.AddXY(Punto.Hora, Punto.Temp1)
-            Chart1.Series.Item("Temp2").Points.AddXY(Punto.Hora, Punto.Temp2)
-            If Punto.Entrada2 = False Then
-                Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1).BorderWidth = 1
-                Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).BorderWidth = 1
-            End If
-            Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1).Tag = Punto.Id
-            Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).Tag = Punto.Id
-            Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1).ToolTip = Punto.Tooltip
-            Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).ToolTip = Punto.Tooltip
+        'If Punto.Vacio Then
+        'Chart1.Series.Item("Temp1").Points.AddXY(Punto.Hora, 0)
+        'Chart1.Series.Item("Temp2").Points.AddXY(Punto.Hora, 0)
+        'Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1).IsEmpty = True
+        'Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).IsEmpty = True
+        'Else
+        Chart1.Series.Item("Temp1").Points.Item(Punto.Item).IsEmpty = False
+        Chart1.Series.Item("Temp2").Points.Item(Punto.Item).IsEmpty = False
+        Chart1.Series.Item("Temp1").Points.Item(Punto.Item).SetValueXY(Punto.Hora, Punto.Temp1)
+        Chart1.Series.Item("Temp2").Points.Item(Punto.Item).SetValueXY(Punto.Hora, Punto.Temp2)
+        'Chart1.Series.Item("Temp1").Points.AddXY(Punto.Hora, Punto.Temp1)
+        'Chart1.Series.Item("Temp2").Points.AddXY(Punto.Hora, Punto.Temp2)
+        If Punto.Entrada2 = False Then
+            Chart1.Series.Item("Temp1").Points.Item(Punto.Item).BorderWidth = 1
+            Chart1.Series.Item("Temp2").Points.Item(Punto.Item).BorderWidth = 1
         End If
+        Chart1.Series.Item("Temp1").Points.Item(Punto.Item).Tag = Punto.Id
+        Chart1.Series.Item("Temp2").Points.Item(Punto.Item).Tag = Punto.Id
+        Chart1.Series.Item("Temp1").Points.Item(Punto.Item).ToolTip = Punto.Tooltip
+        Chart1.Series.Item("Temp2").Points.Item(Punto.Item).ToolTip = Punto.Tooltip
+        'End If
         If Len(Punto.Etiqueta1) Then
             Dim x As New System.Windows.Forms.DataVisualization.Charting.CalloutAnnotation
             x.Text = Punto.Etiqueta1
@@ -324,7 +360,7 @@ Friend Class Form1
             x.CalloutStyle = DataVisualization.Charting.CalloutStyle.SimpleLine
             x.AllowSelecting = False
             x.ToolTip = Punto.Tooltip
-            x.AnchorDataPoint = Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1)
+            x.AnchorDataPoint = Chart1.Series.Item("Temp1").Points.Item(Punto.Item)
             x.Font = New Font(sNombreFuenteP, lTamanioPequenio)
             Chart1.Annotations.Add(x)
         End If
@@ -337,7 +373,7 @@ Friend Class Form1
             x.CalloutStyle = DataVisualization.Charting.CalloutStyle.SimpleLine
             x.AllowSelecting = False
             x.ToolTip = Punto.Tooltip
-            x.AnchorDataPoint = Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1)
+            x.AnchorDataPoint = Chart1.Series.Item("Temp2").Points.Item(Punto.Item)
             x.Font = New Font(sNombreFuenteP, lTamanioPequenio)
             Chart1.Annotations.Add(x)
         End If

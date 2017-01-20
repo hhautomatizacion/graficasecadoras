@@ -164,10 +164,14 @@ Public Class Form5
             Chart1.Titles.Item(1).Docking = DataVisualization.Charting.Docking.Bottom
             Chart1.ChartAreas(0).AxisY.TitleFont = New Font(sNombreFuenteP, lTamanioPequenio)
             If bEscalaFarenheit Then
+                Chart1.ChartAreas(0).AxisY.Maximum = lMaximoGrafica + (4 * lRangoAceptable)
                 Chart1.ChartAreas(0).AxisY.Title = "Temperatura °F"
             Else
+                Chart1.ChartAreas(0).AxisY.Maximum = Escala(lMaximoGrafica + (4 * lRangoAceptable))
                 Chart1.ChartAreas(0).AxisY.Title = "Temperatura °C"
             End If
+            ToolStripProgressBar1.Maximum = DateDiff(DateInterval.Minute, CDate(sFechaInicio), CDate(sFechaFin))
+
             Chart1.ChartAreas(0).AxisY.LabelStyle.Font = New Font(sNombreFuenteP, lTamanioPequenio)
             Chart1.ChartAreas(0).AxisX.LabelStyle.Font = New Font(sNombreFuenteP, lTamanioPequenio)
             Me.Cursor = Cursors.WaitCursor
@@ -197,6 +201,9 @@ Public Class Form5
         Dim m2 As Long
         Dim m1 As Long
         Dim lFormula As Integer
+        Dim lTimeStamp As Long
+        Dim lAnteriorTimeStamp As Long
+        Dim iIter As Integer
 
         sTemp = Split(e.Argument, sSeparador)
         sSecadora = sTemp(0)
@@ -204,80 +211,116 @@ Public Class Form5
         sFechaFin = sTemp(2)
         iContador = 0
         pPaso = New Paso
-        lMinutosDiferencia = DateDiff(DateInterval.Minute, CDate(sFechaInicio), CDate(sFechaFin))
-        If lMinutosDiferencia > 0 Then
-            For lMinuto = 0 To lMinutosDiferencia
-                Punto = Nothing
-                Punto.Vacio = True
-                sSQL = "SELECT id,fecha,temp1,temp2,formula,display,entrada1,entrada2 FROM lecturas WHERE secadora=" & sSecadora & " AND fecha >= DATE_ADD('" & sFechaInicio & "',INTERVAL " & lMinuto & " MINUTE) AND fecha < DATE_ADD('" & sFechaInicio & "',INTERVAL " & lMinuto + 1 & " MINUTE)"
-                mLector = Consulta(sSQL)
-                Do While mLector.Read
-                    Punto.Vacio = False
-                    Punto.Etiqueta1 = ""
-                    Punto.Etiqueta2 = ""
-                    Try
-                        Punto.Id = mLector.Item("id")
-                        Punto.Temp1 = Escala(mLector.Item("temp1"))
-                        Punto.Temp2 = Escala(mLector.Item("temp2"))
-                        Punto.Entrada1 = mLector.Item("entrada1")
-                        Punto.Entrada2 = mLector.Item("entrada2")
-                        Punto.Hora = (CDate(mLector.Item("fecha")))
-                        lPasoTemp = ObtenerPaso(mLector.Item("display"))
-                        Punto.Valv = ObtenerValv(mLector.Item("display"))
-                        If lPasoTemp <> 0 Then
-                            lPaso = lPasoTemp
-                        End If
-                        If CBool(mLector.Item("entrada1")) = False Then
-                            lPaso = 0
-                        End If
-                        Punto.Paso = lPaso
-                        If lFormula = 0 Then
-                            lFormula = mLector.Item("formula")
-                        End If
-                        Punto.Formula = lFormula
-                        Punto.Tooltip = "Hora:" & vbTab & (CDate(mLector.Item("fecha"))).ToString("HH:mm:ss") & vbCrLf & "Formula:" & vbTab & mLector.Item("formula").ToString & vbCrLf & "Temp entrada:" & vbTab & ValToTemp(mLector.Item("temp1")) & vbCrLf & "Temp salida:" & vbTab & ValToTemp(mLector.Item("temp2")) & vbCrLf & "Display:" & vbTab & mLector.Item("display") & vbCrLf & "Ventilador:" & vbTab & BoolToOnOff(mLector.Item("ENTRADA1")) & vbCrLf & "Quemador:" & vbTab & BoolToOnOff(mLector.Item("ENTRADA2"))
-                        If iContador = 0 Then
-                            pPaso.IdInicio = 0
-                            pPaso.Inicio = Punto.Hora.ToString("HH:mm:ss")
-                        End If
-                        If lPaso <> lPasoAnterior Then
-                            pPaso.Id = lPasoAnterior
-                            pPaso.IdFin = iContador
-                            pPaso.Fin = dHoraAnt.ToString("HH:mm:ss")
-                            pPaso.Duracion = LapsoTiempo(CDate(pPaso.Inicio), CDate(pPaso.Fin))
-                            cPasos.Add(pPaso)
-                            pPaso.IdInicio = iContador
-                            pPaso.Inicio = Punto.Hora.ToString("HH:mm:ss")
-                            lPasoAnterior = lPaso
-                        End If
-                    Catch
 
-                    End Try
-                    m1 = Math.Abs(Pendiente(Punto.Temp1, lTemp1Ant, Punto.Hora, dHoraAnt))
-                    m2 = Math.Abs(Pendiente(Punto.Temp2, lTemp2Ant, Punto.Hora, dHoraAnt))
-                    If m1 <> 0 Or m2 <> 0 Then
-                        If m1 > 3 Then
-                            Punto.Etiqueta1 = "Cambio temp" & vbCrLf & Math.Abs(Punto.Temp1 - lTemp1Ant) & Unidades() & " en " & (Punto.Hora - dHoraAnt).TotalSeconds & " seg"
-                        End If
-                        If m2 > 3 Then
-                            Punto.Etiqueta2 = "Cambio temp" & vbCrLf & Math.Abs(Punto.Temp2 - lTemp2Ant) & Unidades() & " en " & (Punto.Hora - dHoraAnt).TotalSeconds & " seg"
-                        End If
-                        m1 = 0
-                        m2 = 0
+        '       cPasos.Add(pPaso)
+        'pPaso.Inicio = CDate(sFechaInicio).ToString("HH:mm:ss")
+        'pPaso.IdInicio = 0
+        lMinutosDiferencia = DateDiff(DateInterval.Minute, CDate(sFechaInicio), CDate(sFechaFin))
+        lAnteriorTimeStamp = Long.MaxValue - 1
+        lMinuto = 0
+        If lMinutosDiferencia > 0 Then
+            'For lMinuto = 0 To lMinutosDiferencia
+            Punto = Nothing
+            Punto.Vacio = True
+            sSQL = "SELECT id,fecha, (TO_SECONDS(fecha) DIV 60) AS ts,temp1,temp2,formula,display,entrada1,entrada2 FROM lecturas WHERE secadora=" & sSecadora & " AND fecha >= '" & sFechaInicio & "' AND fecha <= '" & sFechaFin & "'"
+            Debug.Print(sSQL)
+            mLector = Consulta(sSQL)
+            Do While mLector.Read
+                Punto.Vacio = False
+                Punto.Etiqueta1 = ""
+                Punto.Etiqueta2 = ""
+                Try
+                    lTimeStamp = Val(mLector.Item("ts"))
+                    If lTimeStamp > lAnteriorTimeStamp Then
+                        lMinuto = lMinuto + 1
                     End If
-                    lTemp1Ant = Punto.Temp1
-                    lTemp2Ant = Punto.Temp2
-                    dHoraAnt = Punto.Hora
-                    iContador = iContador + 1
-                    BackgroundWorker1.ReportProgress((lMinuto / lMinutosDiferencia) * 100, Punto)
-                Loop
-                mLector.Close()
-                If Punto.Vacio Then
-                    iContador = iContador + 1
-                    Punto.Hora = DateAdd(DateInterval.Minute, lMinuto, CDate(sFechaInicio))
-                    BackgroundWorker1.ReportProgress((lMinuto / lMinutosDiferencia) * 100, Punto)
+                    If lTimeStamp > lAnteriorTimeStamp + 1 Then
+                        For iIter = lAnteriorTimeStamp + 1 To lTimeStamp
+                            Punto.Vacio = True
+                            Punto.Hora = DateAdd(DateInterval.Minute, iContador, CDate(sFechaInicio))
+                            BackgroundWorker1.ReportProgress(lMinuto, Punto)
+                            iContador = iContador + 1
+                            lMinuto = lMinuto + 1
+                        Next
+                        Punto.Vacio = False
+                    End If
+                    Punto.Id = mLector.Item("id")
+                    Punto.Temp1 = Escala(mLector.Item("temp1"))
+                    Punto.Temp2 = Escala(mLector.Item("temp2"))
+                    Punto.Entrada1 = mLector.Item("entrada1")
+                    Punto.Entrada2 = mLector.Item("entrada2")
+                    Punto.Hora = (CDate(mLector.Item("fecha")))
+                    lPasoTemp = ObtenerPaso(mLector.Item("display"))
+                    Punto.Valv = ObtenerValv(mLector.Item("display"))
+                    If lPasoTemp <> 0 Then
+                        lPaso = lPasoTemp
+                    End If
+                    If CBool(mLector.Item("entrada1")) = False Then
+                        lPaso = 0
+                    End If
+                    Punto.Paso = lPaso
+                    If lFormula = 0 Then
+                        lFormula = mLector.Item("formula")
+                    End If
+                    Punto.Formula = lFormula
+                    Punto.Tooltip = "Hora:" & vbTab & (CDate(mLector.Item("fecha"))).ToString("HH:mm:ss") & vbCrLf & "Formula:" & vbTab & mLector.Item("formula").ToString & vbCrLf & "Temp entrada:" & vbTab & ValToTemp(mLector.Item("temp1")) & vbCrLf & "Temp salida:" & vbTab & ValToTemp(mLector.Item("temp2")) & vbCrLf & "Display:" & vbTab & mLector.Item("display") & vbCrLf & "Ventilador:" & vbTab & BoolToOnOff(mLector.Item("ENTRADA1")) & vbCrLf & "Quemador:" & vbTab & BoolToOnOff(mLector.Item("ENTRADA2"))
+                    'If iContador = 0 Then
+                    'pPaso.IdInicio = 0
+                    'pPaso.Inicio = Punto.Hora.ToString("HH:mm:ss")
+                    'End If
+                    '                 cPasos.Item(cPasos.Count).id = lPaso
+                    '                cPasos.Item(cPasos.Count).idfin = iContador
+                    '               cPasos.Item(cPasos.Count).fin = Punto.Hora.ToString("HH:mm:ss")
+
+                    If lPaso <> lPasoAnterior Then
+                        '           Debug.Print(lPaso & " ," & lPasoAnterior)
+                        pPaso.Id = lPasoAnterior
+                        pPaso.IdFin = iContador
+                        pPaso.Fin = dHoraAnt.ToString("HH:mm:ss")
+                        pPaso.Duracion = LapsoTiempo(CDate(pPaso.Inicio), CDate(pPaso.Fin))
+
+                        cPasos.Add(pPaso)
+                        pPaso = New Paso
+                        'cPasos.Item(cPasos.Count).inicio = Punto.Hora.ToString("HH:mm:ss")
+                        'cPasos.Item(cPasos.Count).idinicio = iContador
+                        'cPasos.Item(cPasos.Count).inicio = Punto.Hora.ToString("HH:mm:ss")
+                        pPaso.IdInicio = iContador
+                        pPaso.Inicio = Punto.Hora.ToString("HH:mm:ss")
+                        lPasoAnterior = lPaso
+
+                    End If
+                Catch
+
+                End Try
+                m1 = Math.Abs(Pendiente(Punto.Temp1, lTemp1Ant, Punto.Hora, dHoraAnt))
+                m2 = Math.Abs(Pendiente(Punto.Temp2, lTemp2Ant, Punto.Hora, dHoraAnt))
+                If m1 <> 0 Or m2 <> 0 Then
+                    If m1 > 3 Then
+                        Punto.Etiqueta1 = "Cambio temp" & vbCrLf & Math.Abs(Punto.Temp1 - lTemp1Ant) & Unidades() & " en " & (Punto.Hora - dHoraAnt).TotalSeconds & " seg"
+                    End If
+                    If m2 > 3 Then
+                        Punto.Etiqueta2 = "Cambio temp" & vbCrLf & Math.Abs(Punto.Temp2 - lTemp2Ant) & Unidades() & " en " & (Punto.Hora - dHoraAnt).TotalSeconds & " seg"
+                    End If
+                    m1 = 0
+                    m2 = 0
                 End If
-            Next lMinuto
+                lTemp1Ant = Punto.Temp1
+                lTemp2Ant = Punto.Temp2
+                dHoraAnt = Punto.Hora
+                BackgroundWorker1.ReportProgress(lMinuto, Punto)
+                'If lTimeStamp > lAnteriorTimeStamp Then
+                iContador = iContador + 1
+                'End If
+                lAnteriorTimeStamp = lTimeStamp
+            Loop
+            mLector.Close()
+
+            'If Punto.Vacio Then
+            'iContador = iContador + 1
+            'Punto.Hora = DateAdd(DateInterval.Minute, lMinuto, CDate(sFechaInicio))
+            'BackgroundWorker1.ReportProgress((lMinuto / lMinutosDiferencia) * 100, Punto)
+            'End If
+            'Next lMinuto
         End If
     End Sub
 
@@ -287,11 +330,13 @@ Public Class Form5
         Dim iLimSup As Integer
         Dim iLimInf As Integer
 
-        If e.ProgressPercentage <= 100 Then
+        Debug.Print(e.ProgressPercentage & "/" & ToolStripProgressBar1.Maximum)
+        If e.ProgressPercentage <= ToolStripProgressBar1.Maximum Then
             ToolStripProgressBar1.Value = e.ProgressPercentage
         End If
         Punto = e.UserState
         If Punto.Vacio Then
+
             Chart1.Series.Item("Temp1").Points.AddY(0)
             Chart1.Series.Item("Temp2").Points.AddY(0)
             Chart1.Series.Item("Set1").Points.AddY(0)
@@ -315,7 +360,7 @@ Public Class Form5
 
             'quitar este if
             If Punto.Valv < 4000 Then
-                Chart1.Series.Item("Valv").Points.AddXY(Punto.Hora.ToString("HH:mm:ss"), Punto.Valv / 10)
+                Chart1.Series.Item("Valv").Points.AddXY(Punto.Hora.ToString("HH:mm:ss"), Escala(lMaximoGrafica) * Punto.Valv / 4000)
             Else
                 Chart1.Series.Item("Valv").Points.AddXY(Punto.Hora.ToString("HH:mm:ss"), 0)
             End If
@@ -350,7 +395,7 @@ Public Class Form5
             Chart1.Series.Item("Temp1").Points.Item(Chart1.Series.Item("Temp1").Points.Count - 1).ToolTip = Punto.Tooltip
             Chart1.Series.Item("Temp2").Points.Item(Chart1.Series.Item("Temp2").Points.Count - 1).ToolTip = Punto.Tooltip
             Chart1.Series.Item("Valv").Points.Item(Chart1.Series.Item("Valv").Points.Count - 1).ToolTip = Punto.Tooltip
-            End If
+        End If
             If Len(Punto.Etiqueta1) Then
                 Using aAnotacionTemp1 As New System.Windows.Forms.DataVisualization.Charting.CalloutAnnotation
                     aAnotacionTemp1.Text = Punto.Etiqueta1
@@ -385,6 +430,7 @@ Public Class Form5
         Dim pPaso As Paso
 
         For Each pPaso In cPasos
+            'Debug.Print(pPaso.Id & " " & pPaso.Inicio & " - " & pPaso.Fin)
             Using slPaso As New System.Windows.Forms.DataVisualization.Charting.StripLine
                 slPaso.Interval = 0
                 slPaso.IntervalOffset = pPaso.IdInicio

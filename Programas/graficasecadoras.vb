@@ -33,6 +33,7 @@ Module Module1
     Public lRangoAceptable As Long
     Public cFormulasTempSalida As Collection
     Public cFormulasTempEntrada As Collection
+    Public lMaximoGrafica As Long
     Public lMinutosActualizar As Long
     Public sSecadoraActual As String
     Public sVersion As String
@@ -67,6 +68,7 @@ Module Module1
     End Structure
     Public Structure PuntoGrafica
         Public Id As Integer
+        Public Item As Integer
         Public Temp1 As Integer
         Public Temp2 As Integer
         Public Display As String

@@ -37,8 +37,8 @@
 	Public WithEvents _Label1_2 As System.Windows.Forms.Label
 	Public WithEvents _Label1_1 As System.Windows.Forms.Label
 	Public WithEvents _Label1_0 As System.Windows.Forms.Label
-	Public WithEvents Command1 As Microsoft.VisualBasic.Compatibility.VB6.ButtonArray
-	Public WithEvents Label1 As Microsoft.VisualBasic.Compatibility.VB6.LabelArray
+    'Public WithEvents Command1 As Microsoft.VisualBasic.Compatibility.VB6.ButtonArray
+    Public WithEvents Label1 As Microsoft.VisualBasic.Compatibility.VB6.LabelArray
 	Public WithEvents Text1 As Microsoft.VisualBasic.Compatibility.VB6.TextBoxArray
 	'NOTE: The following procedure is required by the Windows Form Designer
 	'It can be modified using the Windows Form Designer.
@@ -67,7 +67,7 @@
         Me._Label1_2 = New System.Windows.Forms.Label
         Me._Label1_1 = New System.Windows.Forms.Label
         Me._Label1_0 = New System.Windows.Forms.Label
-        Me.Command1 = New Microsoft.VisualBasic.Compatibility.VB6.ButtonArray(Me.components)
+        'Me.Command1 = New Microsoft.VisualBasic.Compatibility.VB6.ButtonArray(Me.components)
         Me.Label1 = New Microsoft.VisualBasic.Compatibility.VB6.LabelArray(Me.components)
         Me.Text1 = New Microsoft.VisualBasic.Compatibility.VB6.TextBoxArray(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
@@ -75,7 +75,7 @@
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton
-        CType(Me.Command1, System.ComponentModel.ISupportInitialize).BeginInit()
+        'CType(Me.Command1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Text1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -457,7 +457,7 @@
         Me.MinimizeBox = False
         Me.Name = "Form2"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
-        CType(Me.Command1, System.ComponentModel.ISupportInitialize).EndInit()
+        'CType(Me.Command1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Text1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
