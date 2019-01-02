@@ -17,7 +17,7 @@
 * Programas compilados
 
 ---
-![Secadora 32bits.ico](/Programas/Secadora 32bits.ico)
+![Secadora 32bits.ico](/Programas/Secadora%2032bits.ico)
 ---
 ![SecadoraChart.ico](/Programas/SecadoraChart.ico)
 ---
